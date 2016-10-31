@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+
+namespace RoomCheck
+{
+    public class Room
+    {
+        public string RoomNo { get; set; }
+        public int OccupiedStatusID { get; set; }
+        public int CleanStatusID { get; set; }
+        public int RoomTypeID { get; set; }
+        public string Note { get; set; }
+        public int NoGuests { get; set; }
+        public int UserID { get; set; }
+        public DateTime Date { get; set; }
+
+        public Room(string roomNo, int occupiedStatus, int cleanStatus)
+        {
+            RoomNo = roomNo;
+            OccupiedStatusID = occupiedStatus;
+            CleanStatusID = cleanStatus;
+        }
+    }
+
+    public class RoomOccupiedStatus
+    {
+        public string Description { get; set; }
+    }
+
+    public class RoomCleanStatus
+    {
+        public string Description { get; set; }
+    }
+
+    public class RoomType
+    {
+        public string Description { get; set; }
+    }
+
+    public class User
+    {
+        //fill in later
+    }
+
+}

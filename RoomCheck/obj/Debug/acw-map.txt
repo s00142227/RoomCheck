@@ -1,0 +1,16 @@
+RoomCheck.MainActivity, RoomCheck;md570b85505b84735fef43634928b8e717d.MainActivity
+RoomCheck.MainActivity, RoomCheck, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md570b85505b84735fef43634928b8e717d.MainActivity
+RoomCheck.MainActivity;md570b85505b84735fef43634928b8e717d.MainActivity
+roomcheck.MainActivity;md570b85505b84735fef43634928b8e717d.MainActivity
+RoomCheck.MyRoomsActivity, RoomCheck;md570b85505b84735fef43634928b8e717d.MyRoomsActivity
+RoomCheck.MyRoomsActivity, RoomCheck, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md570b85505b84735fef43634928b8e717d.MyRoomsActivity
+RoomCheck.MyRoomsActivity;md570b85505b84735fef43634928b8e717d.MyRoomsActivity
+roomcheck.MyRoomsActivity;md570b85505b84735fef43634928b8e717d.MyRoomsActivity
+RoomCheck.RoomAdapter, RoomCheck;md570b85505b84735fef43634928b8e717d.RoomAdapter
+RoomCheck.RoomAdapter, RoomCheck, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md570b85505b84735fef43634928b8e717d.RoomAdapter
+RoomCheck.RoomAdapter;md570b85505b84735fef43634928b8e717d.RoomAdapter
+roomcheck.RoomAdapter;md570b85505b84735fef43634928b8e717d.RoomAdapter
+RoomCheck.ColorAdapter, RoomCheck;md570b85505b84735fef43634928b8e717d.ColorAdapter
+RoomCheck.ColorAdapter, RoomCheck, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md570b85505b84735fef43634928b8e717d.ColorAdapter
+RoomCheck.ColorAdapter;md570b85505b84735fef43634928b8e717d.ColorAdapter
+roomcheck.ColorAdapter;md570b85505b84735fef43634928b8e717d.ColorAdapter
