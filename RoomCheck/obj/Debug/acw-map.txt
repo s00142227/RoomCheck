@@ -10,7 +10,7 @@ RoomCheck.RoomAdapter, RoomCheck;md570b85505b84735fef43634928b8e717d.RoomAdapter
 RoomCheck.RoomAdapter, RoomCheck, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md570b85505b84735fef43634928b8e717d.RoomAdapter
 RoomCheck.RoomAdapter;md570b85505b84735fef43634928b8e717d.RoomAdapter
 roomcheck.RoomAdapter;md570b85505b84735fef43634928b8e717d.RoomAdapter
-RoomCheck.ColorAdapter, RoomCheck;md570b85505b84735fef43634928b8e717d.ColorAdapter
-RoomCheck.ColorAdapter, RoomCheck, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md570b85505b84735fef43634928b8e717d.ColorAdapter
-RoomCheck.ColorAdapter;md570b85505b84735fef43634928b8e717d.ColorAdapter
-roomcheck.ColorAdapter;md570b85505b84735fef43634928b8e717d.ColorAdapter
+RoomCheck.RoomDetailsActivity, RoomCheck;md570b85505b84735fef43634928b8e717d.RoomDetailsActivity
+RoomCheck.RoomDetailsActivity, RoomCheck, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md570b85505b84735fef43634928b8e717d.RoomDetailsActivity
+RoomCheck.RoomDetailsActivity;md570b85505b84735fef43634928b8e717d.RoomDetailsActivity
+roomcheck.RoomDetailsActivity;md570b85505b84735fef43634928b8e717d.RoomDetailsActivity

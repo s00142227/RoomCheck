@@ -14,6 +14,7 @@ namespace RoomCheck
 {
     public class Room
     {
+        public int ID { get; set; }
         public string RoomNo { get; set; }
         public int OccupiedStatusID { get; set; }
         public int CleanStatusID { get; set; }
@@ -23,8 +24,9 @@ namespace RoomCheck
         public int UserID { get; set; }
         public DateTime Date { get; set; }
 
-        public Room(string roomNo, int occupiedStatus, int cleanStatus)
+        public Room(int id,string roomNo, int occupiedStatus, int cleanStatus)
         {
+            ID = id;
             RoomNo = roomNo;
             OccupiedStatusID = occupiedStatus;
             CleanStatusID = cleanStatus;

@@ -40,27 +40,23 @@ namespace RoomCheck
                 if (con.State == ConnectionState.Closed)
                 {
                     con.Open();
-                    //var result = "";
                     MySqlCommand cmd = new MySqlCommand("SELECT * FROM RoomTbl", con);
                     var reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        //var someValue = reader["user"];
+                        var ID = (int)reader["ID"];
                         var RoomNo = (string)reader["RoomNo"];
                         var roomOcc = (int)reader["RoomOccupiedStatusID"];
                         var roomClean = (int)reader["RoomCleanStatusID"];
-                        //result += (someValue + "\n");
-                        rooms.Add(new Room(RoomNo, roomOcc, roomClean));
+                        rooms.Add(new Room(ID, RoomNo, roomOcc, roomClean));
 
                     }
 
-                    //Toast.MakeText(this, result, ToastLength.Short).Show();
                 }
             }
             catch (MySqlException ex)
             {
-                //txtSysLog.Text = ex.ToString();
                 Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
             }
             finally
@@ -68,28 +64,33 @@ namespace RoomCheck
                 con.Close();
             }
 
-            //colorItems.Add(new ColorItem()
-            //{
-            //    Color = Android.Graphics.Color.DarkRed,
-            //    ColorName = "Dark Red",
-            //    Code = "8B0000"
-            //});
-            //colorItems.Add(new ColorItem()
-            //{
-            //    Color = Android.Graphics.Color.SlateBlue,
-            //    ColorName = "Slate Blue",
-            //    Code = "6A5ACD"
-            //});
-            //colorItems.Add(new ColorItem()
-            //{
-            //    Color = Android.Graphics.Color.ForestGreen,
-            //    ColorName = "Forest Green",
-            //    Code = "228B22"
-            //});
-
-            //listView.Adapter = new ColorAdapter(this, colorItems);
+        
             listView.Adapter = new RoomAdapter(this, rooms);
+
+            listView.ItemClick += ListViewOnItemClick;
+
         }
+
+        private void ListViewOnItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            if (listView.GetItemAtPosition(e.Position) != null)
+            {
+                var room = listView.GetItemAtPosition(e.Position).Cast<Room>();
+                Toast.MakeText(this, room.RoomNo, ToastLength.Short).Show();
+
+                //pass the room id to the next activity
+                var roomDetailsActivity = new Intent(this, typeof(RoomDetailsActivity));
+                roomDetailsActivity.PutExtra("RoomID", room.ID);
+                StartActivity(roomDetailsActivity);
+            }
+            else
+            {
+                string item = listView.GetItemAtPosition(e.Position).ToString();
+                Toast.MakeText(this, item, ToastLength.Short).Show();
+            }
+        }
+
+
     }
 
     public class RoomAdapter : BaseAdapter<Room>
@@ -160,47 +161,5 @@ namespace RoomCheck
         }
     }
 
-    public class ColorAdapter : BaseAdapter<ColorItem>
-    {
-        List<ColorItem> items;
-        Activity context;
-        public ColorAdapter(Activity context, List<ColorItem> items)
-            : base()
-        {
-            this.context = context;
-            this.items = items;
-        }
-        public override long GetItemId(int position)
-        {
-            return position;
-        }
-        public override ColorItem this[int position]
-        {
-            get { return items[position]; }
-        }
-        public override int Count
-        {
-            get { return items.Count; }
-        }
-        public override View GetView(int position, View convertView, ViewGroup parent)
-        {
-            var item = items[position];
-
-            View view = convertView;
-            if (view == null) // no view to re-use, create new
-                view = context.LayoutInflater.Inflate(Resource.Layout.MyRooms, null);
-            view.FindViewById<TextView>(Resource.Id.textView1).Text = item.ColorName;
-            view.FindViewById<TextView>(Resource.Id.textView2).Text = item.Code;
-            view.FindViewById<ImageView>(Resource.Id.imageView1).SetBackgroundColor(item.Color);
-
-            return view;
-        }
-    }
-
-    public class ColorItem
-    {
-        public string ColorName { get; set; }
-        public string Code { get; set; }
-        public Android.Graphics.Color Color { get; set; }
-    }
+    
 }

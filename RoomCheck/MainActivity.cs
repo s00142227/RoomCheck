@@ -59,7 +59,7 @@ namespace RoomCheck
                     var result = "";
                     MySqlCommand cmd = new MySqlCommand("SELECT * FROM tblTest", con);
                     var reader = cmd.ExecuteReader();
-
+                    
                     while (reader.Read())
                     {
                         var someValue = reader["user"];
