@@ -12,7 +12,7 @@
       </intent-filter>
     </activity>
     <activity android:label="MyRoomsActivity" android:name="md570b85505b84735fef43634928b8e717d.MyRoomsActivity" />
-    <activity android:label="RoomDetailsActivity" android:name="md570b85505b84735fef43634928b8e717d.RoomDetailsActivity" />
+    <activity android:label="Room Details" android:name="md570b85505b84735fef43634928b8e717d.RoomDetailsActivity" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="RoomCheck.RoomCheck.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">

@@ -8,7 +8,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
+        android:id="@+id/txtRoomNo" />
     <LinearLayout
         android:orientation="horizontal"
         android:gravity="center_vertical"
@@ -82,7 +82,7 @@
             android:id="@+id/txtRoomCleanStatus" />
     </LinearLayout>
     <TextView
-        android:text="Medium Text"
+        android:text="Note"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

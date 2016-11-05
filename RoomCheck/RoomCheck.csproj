@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBRepository.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MyRoomsActivity.cs" />
     <Compile Include="ObjectTypeHelper.cs" />

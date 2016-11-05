@@ -14,7 +14,7 @@ using System.Data;
 
 namespace RoomCheck
 {
-    [Activity(Label = "MyRoomsActivity")]
+    [Activity(Label = "My Rooms")]
     public class MyRoomsActivity : Activity
     {
         //List<ColorItem> colorItems = new List<ColorItem>();
@@ -49,7 +49,8 @@ namespace RoomCheck
                         var RoomNo = (string)reader["RoomNo"];
                         var roomOcc = (int)reader["RoomOccupiedStatusID"];
                         var roomClean = (int)reader["RoomCleanStatusID"];
-                        rooms.Add(new Room(ID, RoomNo, roomOcc, roomClean));
+                        var roomType = (int)reader["RoomTypeID"];
+                        rooms.Add(new Room(ID, RoomNo, roomOcc, roomClean, roomType));
 
                     }
 
