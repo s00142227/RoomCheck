@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="RoomCheck.RoomCheck" android:versionCode="1" android:versionName="1.0" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="RoomCheck.RoomCheck" android:versionCode="1" android:versionName="1.0">
 	<uses-sdk android:minSdkVersion="23" />
-	<application android:label="RoomCheck" android:theme="@android:style/Theme.Material.Light" >
-  </application>
+	<application android:label="RoomCheck" android:theme="@android:style/Theme.Material.Light"></application>
 </manifest>

@@ -17,9 +17,10 @@ namespace RoomCheck
     [Activity(Label = "My Rooms")]
     public class MyRoomsActivity : Activity
     {
-        //List<ColorItem> colorItems = new List<ColorItem>();
         List<Room> rooms = new List<Room>();
         ListView listView;
+        DBRepository dbr = new DBRepository();
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -30,41 +31,7 @@ namespace RoomCheck
 
             listView = FindViewById<ListView>(Resource.Id.lstRooms);
 
-            MySqlConnection con =
-                   new MySqlConnection(
-                       "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
-
-            try
-            {
-
-                if (con.State == ConnectionState.Closed)
-                {
-                    con.Open();
-                    MySqlCommand cmd = new MySqlCommand("SELECT * FROM RoomTbl", con);
-                    var reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        var ID = (int)reader["ID"];
-                        var RoomNo = (string)reader["RoomNo"];
-                        var roomOcc = (int)reader["RoomOccupiedStatusID"];
-                        var roomClean = (int)reader["RoomCleanStatusID"];
-                        var roomType = (int)reader["RoomTypeID"];
-                        rooms.Add(new Room(ID, RoomNo, roomOcc, roomClean, roomType));
-
-                    }
-
-                }
-            }
-            catch (MySqlException ex)
-            {
-                Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
-            }
-            finally
-            {
-                con.Close();
-            }
-
+            rooms = dbr.GetAllRooms();
         
             listView.Adapter = new RoomAdapter(this, rooms);
 
@@ -77,7 +44,6 @@ namespace RoomCheck
             if (listView.GetItemAtPosition(e.Position) != null)
             {
                 var room = listView.GetItemAtPosition(e.Position).Cast<Room>();
-                Toast.MakeText(this, room.RoomNo, ToastLength.Short).Show();
 
                 //pass the room id to the next activity
                 var roomDetailsActivity = new Intent(this, typeof(RoomDetailsActivity));
@@ -96,6 +62,8 @@ namespace RoomCheck
 
     public class RoomAdapter : BaseAdapter<Room>
     {
+        DBRepository dbr = new DBRepository();
+
         List<Room> items;
         Activity context;
         public RoomAdapter(Activity context, List<Room> items)
@@ -123,40 +91,24 @@ namespace RoomCheck
             View view = convertView;
             if (view == null) // no view to re-use, create new
                 view = context.LayoutInflater.Inflate(Resource.Layout.MyRooms, null);
-            view.FindViewById<TextView>(Resource.Id.textView1).Text = item.RoomNo;
-            switch (item.OccupiedStatusID)
-            {
-                case 1:
-                    view.FindViewById<TextView>(Resource.Id.textView2).Text = "Unknown";
-                    break;
-                case 2:
-                    view.FindViewById<TextView>(Resource.Id.textView2).Text = "Unoccupied";
-                    break;
-                case 3:
-                    view.FindViewById<TextView>(Resource.Id.textView2).Text = "Occupied";
-                    break;
-                default:
-                    view.FindViewById<TextView>(Resource.Id.textView2).Text = "Unknown";
-                    break;
 
-            }
+            RoomOccupiedStatus roomOccStatus = dbr.GetOccupiedStatusById(item.OccupiedStatusID);
+            RoomCleanStatus roomCleanStatus = dbr.GetCleanStatusById(item.CleanStatusID);
+            RoomType roomType = dbr.GetRoomTypeById(item.RoomTypeID);
 
-            switch (item.CleanStatusID)
-            {
-                case 1:
-                    view.FindViewById<ImageView>(Resource.Id.imageView1).SetBackgroundColor(Android.Graphics.Color.Red);
-                    break;
-                case 2:
-                    view.FindViewById<ImageView>(Resource.Id.imageView1).SetBackgroundColor(Android.Graphics.Color.CadetBlue);
-                    break;
-                case 3:
-                    view.FindViewById<ImageView>(Resource.Id.imageView1).SetBackgroundColor(Android.Graphics.Color.Green);
-                    break;
-                default:
-                    view.FindViewById<ImageView>(Resource.Id.imageView1).SetBackgroundColor(Android.Graphics.Color.DimGray);
-                    break;
+            ImageView imgRoomIcon = view.FindViewById<ImageView>(Resource.Id.imgRoomIcon);
 
-            }
+            //populate room number labels
+            view.FindViewById<TextView>(Resource.Id.lblRoomNo).Text = item.RoomNo;
+
+            //change icon to reflect occupied status
+            int roomOccResourceId = (int)typeof(Resource.Drawable).GetField(roomOccStatus.IconPath).GetValue(null);
+            imgRoomIcon.SetImageResource(roomOccResourceId);
+
+
+            //change border colour to reflect cleaning status
+            int background = (int)typeof(Resource.Drawable).GetField(roomCleanStatus.BorderImage).GetValue(null);
+            view.FindViewById<ImageView>(Resource.Id.imgRoomIcon).SetBackgroundResource(background);
 
             return view;
         }

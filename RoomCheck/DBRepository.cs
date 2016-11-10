@@ -40,7 +40,11 @@ namespace RoomCheck
                         var roomOcc = (int)reader["RoomOccupiedStatusID"];
                         var roomClean = (int)reader["RoomCleanStatusID"];
                         var roomType = (int)reader["RoomTypeID"];
-                        rooms.Add(new Room(ID, RoomNo, roomOcc, roomClean, roomType));
+                        //need to handle null notes
+                        var Note = "";
+                        if (reader["Note"] is string)
+                            Note = (string) reader["Note"];
+                        rooms.Add(new Room(ID, RoomNo, roomOcc, roomClean, roomType, Note));
 
                     }
 
@@ -79,8 +83,12 @@ namespace RoomCheck
                         {
                             while (reader.Read())
                             {
+                                //need to handle null note
+                                var note = "";
+                                if (reader["Note"] is string)
+                                    note = (string) reader["Note"];
                                 room = new Room((int)reader["ID"], (string)reader["RoomNo"],
-                                    (int)reader["RoomOccupiedStatusID"], (int)reader["RoomCleanStatusID"], (int)reader["RoomTypeID"]);
+                                    (int)reader["RoomOccupiedStatusID"], (int)reader["RoomCleanStatusID"], (int)reader["RoomTypeID"], note);
                             }
                         }
                     }
@@ -99,12 +107,12 @@ namespace RoomCheck
             return room;
         }
 
-        public string GetOccupiedStatusById(int id)
+        public RoomOccupiedStatus GetOccupiedStatusById(int id)
         {
             MySqlConnection con =
                    new MySqlConnection(
                        "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
-            string occStatus = "";
+            RoomOccupiedStatus occStatus = new RoomOccupiedStatus();
             try
             {
                 
@@ -119,7 +127,8 @@ namespace RoomCheck
                         {
                             while (reader.Read())
                             {
-                                occStatus = (string) reader["Description"];
+                                occStatus.Description = (string) reader["Description"];
+                                occStatus.IconPath = (string)reader["IconPath"];
                             }
                         }
                     }
@@ -138,12 +147,12 @@ namespace RoomCheck
             return occStatus;
         }
 
-        public string GetCleanStatusById(int id)
+        public RoomCleanStatus GetCleanStatusById(int id)
         {
             MySqlConnection con =
                    new MySqlConnection(
                        "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
-            string cleanStatus = "";
+            RoomCleanStatus cleanStatus = new RoomCleanStatus();
             try
             {
 
@@ -158,7 +167,9 @@ namespace RoomCheck
                         {
                             while (reader.Read())
                             {
-                                cleanStatus = (string)reader["Description"];
+                                cleanStatus.Description = (string)reader["Description"];
+                                cleanStatus.IconPath = (string)reader["IconPath"];
+                                cleanStatus.BorderImage = (string)reader["BorderImage"];
                             }
                         }
                     }
@@ -177,12 +188,12 @@ namespace RoomCheck
             return cleanStatus;
         }
 
-        public string GetRoomTypeById(int id)
+        public RoomType GetRoomTypeById(int id)
         {
             MySqlConnection con =
                    new MySqlConnection(
                        "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
-            string roomType = "";
+            RoomType roomType = new RoomType();
             try
             {
 
@@ -197,7 +208,8 @@ namespace RoomCheck
                         {
                             while (reader.Read())
                             {
-                                roomType = (string)reader["Description"];
+                                roomType.Description = (string)reader["Description"];
+                                roomType.IconPath = (string)reader["IconPath"];
                             }
                         }
                     }

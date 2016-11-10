@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using MySql.Data.MySqlClient;
 using System.Data;
+using Android.Content.Res;
 
 namespace RoomCheck
 {
@@ -25,59 +26,66 @@ namespace RoomCheck
 
             // Create your application here
             DBRepository dbr = new DBRepository();
-            
+
             //might be better to store the current room object in the sqllite db from the previous view?
             //would still have to query a database here but it wouldn't be the cloud database...
             int roomID = Intent.GetIntExtra("RoomID", 0);
-            //Toast.MakeText(this, roomID.ToString(), ToastLength.Short).Show();
 
-            Room room = new Room();
-            MySqlConnection con =
-                   new MySqlConnection(
-                       "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
+            Room room = dbr.GetRoomById(roomID);
 
-            try
-            {
+            //Get all fields on screen
+            TextView txtRoomNo = FindViewById<TextView>(Resource.Id.txtRoomNo);
+            TextView txtRoomType = FindViewById<TextView>(Resource.Id.txtRoomType);
+            TextView txtRoomOccStatus = FindViewById<TextView>(Resource.Id.txtRoomOccupiedStatus);
+            TextView txtRoomCleanStatus = FindViewById<TextView>(Resource.Id.txtRoomCleanStatus);
+            EditText txtNote = FindViewById<EditText>(Resource.Id.txtNote);
+            ImageView imgRoomType = FindViewById<ImageView>(Resource.Id.imgRoomType);
+            ImageView imgRoomOccStatus = FindViewById<ImageView>(Resource.Id.imgRoomOccupiedStatus);
+            ImageView imgRoomCleanStatus = FindViewById<ImageView>(Resource.Id.imgRoomCleanStatus);
 
-                if (con.State == ConnectionState.Closed)
-                {
-                    con.Open();
+            //Get statuses
+            RoomType roomType = dbr.GetRoomTypeById(room.RoomTypeID);
+            RoomOccupiedStatus roomOccStatus = dbr.GetOccupiedStatusById(room.OccupiedStatusID);
+            RoomCleanStatus roomCleanStatus = dbr.GetCleanStatusById(room.CleanStatusID);
 
-                    using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM RoomTbl where ID = @id;", con))
-                    {
-                        cmd.Parameters.AddWithValue("@id", roomID);
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                room = new Room((int) reader["ID"], (string) reader["RoomNo"],
-                                    (int) reader["RoomOccupiedStatusID"], (int) reader["RoomCleanStatusID"], (int)reader["RoomTypeID"]);
-                            }
-                        }
-                    }
-                }
+            //Populate fields
+            txtRoomType.Text = roomType.Description;
+            txtRoomCleanStatus.Text = roomCleanStatus.Description;
+            txtRoomOccStatus.Text = roomOccStatus.Description;
+            txtRoomNo.Text = "Room " + room.RoomNo;
+            txtNote.Text = room.Note;
 
-                TextView txtRoomNo = FindViewById<TextView>(Resource.Id.txtRoomNo);
-                TextView txtRoomType = FindViewById<TextView>(Resource.Id.txtRoomType);
-                TextView txtRoomOccStatus = FindViewById<TextView>(Resource.Id.txtRoomOccupiedStatus);
-                TextView txtRoomCleanStatus = FindViewById<TextView>(Resource.Id.txtRoomCleanStatus);
-                EditText txtNote = FindViewById<EditText>(Resource.Id.txtNote);
+            //Attempts at getting the resource id from the string stored in the database:
 
-                txtRoomType.Text = dbr.GetRoomTypeById(room.RoomTypeID);
-                txtRoomCleanStatus.Text = dbr.GetCleanStatusById(room.CleanStatusID);
-                txtRoomOccStatus.Text = dbr.GetOccupiedStatusById(room.OccupiedStatusID);
-                txtRoomNo.Text = "Room " + room.RoomNo;
+            //Attempt 1:
+            //int resourceId = Resources.GetIdentifier(
+            //   roomType.IconPath, "drawable", GetPackageName());
+            //imgRoomType.SetImageResource(resourceId);
 
-            }
-            catch (MySqlException ex)
-            {
-                Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
-            }
-            finally
-            {
-                con.Close();
-            }
+            //Attempt 2
+            //int resImage = Resources.GetIdentifier(roomType.IconPath, "drawable", PackageName);
 
+            //Attempt 3
+            //int id = Resources.GetIdentifier("drawable/" + roomType.IconPath, null, null);
+
+            //Attempt 4
+            int roomTypeResourceId = (int)typeof(Resource.Drawable).GetField(roomType.IconPath).GetValue(null);
+            imgRoomType.SetImageResource(roomTypeResourceId);
+
+            int roomCleanResourceId = (int)typeof(Resource.Drawable).GetField(roomCleanStatus.IconPath).GetValue(null);
+            imgRoomCleanStatus.SetImageResource(roomCleanResourceId);
+
+            int roomOccupiedResourceId = (int)typeof(Resource.Drawable).GetField(roomOccStatus.IconPath).GetValue(null);
+            imgRoomOccStatus.SetImageResource(roomOccupiedResourceId);
+
+            Button btnSave = FindViewById<Button>(Resource.Id.btnSave);
+            btnSave.Click += BtnSaveOnClick;
+
+        }
+
+        private void BtnSaveOnClick(object sender, EventArgs eventArgs)
+        {
+            //TODO: implement saving of the room object
         }
     }
 }

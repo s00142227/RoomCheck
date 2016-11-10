@@ -24,13 +24,14 @@ namespace RoomCheck
         public int UserID { get; set; }
         public DateTime Date { get; set; }
 
-        public Room(int id,string roomNo, int occupiedStatus, int cleanStatus, int roomType)
+        public Room(int id,string roomNo, int occupiedStatus, int cleanStatus, int roomType, string note)
         {
             ID = id;
             RoomNo = roomNo;
             OccupiedStatusID = occupiedStatus;
             CleanStatusID = cleanStatus;
             RoomTypeID = roomType;
+            Note = note;
         }
 
         public Room()
@@ -43,23 +44,29 @@ namespace RoomCheck
     {
         public int ID { get; set; }
         public string Description { get; set; }
+        public string IconPath { get; set; }
     }
 
     public class RoomCleanStatus
     {
         public int ID { get; set; }
         public string Description { get; set; }
+        public string IconPath { get; set; }
+        public string BorderImage { get; set; }
     }
 
     public class RoomType
     {
         public int ID { get; set; }
         public string Description { get; set; }
+        public string IconPath { get; set; }
     }
 
     public class User
     {
-        //fill in later
+        //TODO: fill in later
     }
+
+    //TODO: add event tables
 
 }
