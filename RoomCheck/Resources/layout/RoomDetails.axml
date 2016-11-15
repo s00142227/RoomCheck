@@ -3,8 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-              >
+    android:gravity="center">
     <TextView
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -64,11 +63,12 @@
         android:layout_width="match_parent"
         android:gravity="center_vertical"
         android:layout_height="wrap_content">
-        <ImageView
+        <Spinner
             android:layout_width="wrap_content"
-            android:src="@android:drawable/ic_menu_gallery"
             android:layout_height="wrap_content"
-            android:id="@+id/imgRoomCleanStatus"
+            android:id="@+id/sprRoomClean"
+            android:spinnerMode="dialog"
+            
             android:minHeight="70dp"
             android:minWidth="50dp"
             android:padding="10dp"
@@ -81,7 +81,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtRoomCleanStatus" />
+            android:id="@+id/txtCleanStatus" />
     </LinearLayout>
     <TextView
         android:text="Note"

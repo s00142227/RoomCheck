@@ -25,11 +25,16 @@ C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\unclean
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\unknown.png
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\unoccupied.png
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\checkedout.png
-C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\RoomCheck.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\RoomCheck.csprojResolveAssemblyReference.cache
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\border_image_green.xml
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\border_image_red.xml
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\border_image_blue.xml
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\layout\roomcleanspinnerlayout.xml
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\RoomCheck.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\Java.Interop.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\Mono.Android.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\Mono.Data.Tds.dll.mdb
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\mscorlib.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\System.ComponentModel.Composition.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\System.Core.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\System.Data.dll.mdb
@@ -57,8 +62,5 @@ C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\Syste
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\System.Transactions.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
-C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\border_image_green.xml
-C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\border_image_red.xml
-C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\border_image_blue.xml
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\RoomCheck.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\RoomCheck.dll.mdb

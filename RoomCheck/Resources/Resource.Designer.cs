@@ -108,23 +108,23 @@ namespace RoomCheck
 			// aapt resource value: 0x7f050007
 			public const int btnRoomList = 2131034119;
 			
-			// aapt resource value: 0x7f050015
-			public const int btnSave = 2131034133;
+			// aapt resource value: 0x7f050016
+			public const int btnSave = 2131034134;
 			
 			// aapt resource value: 0x7f050006
 			public const int btnShowRecords = 2131034118;
 			
-			// aapt resource value: 0x7f050011
-			public const int imgRoomCleanStatus = 2131034129;
+			// aapt resource value: 0x7f05000c
+			public const int imgCleanSPR = 2131034124;
 			
 			// aapt resource value: 0x7f050009
 			public const int imgRoomIcon = 2131034121;
 			
-			// aapt resource value: 0x7f05000f
-			public const int imgRoomOccupiedStatus = 2131034127;
+			// aapt resource value: 0x7f050010
+			public const int imgRoomOccupiedStatus = 2131034128;
 			
-			// aapt resource value: 0x7f05000d
-			public const int imgRoomType = 2131034125;
+			// aapt resource value: 0x7f05000e
+			public const int imgRoomType = 2131034126;
 			
 			// aapt resource value: 0x7f05000a
 			public const int lblRoomNo = 2131034122;
@@ -135,32 +135,35 @@ namespace RoomCheck
 			// aapt resource value: 0x7f05000b
 			public const int lstRooms = 2131034123;
 			
+			// aapt resource value: 0x7f050012
+			public const int sprRoomClean = 2131034130;
+			
 			// aapt resource value: 0x7f050000
 			public const int textView1 = 2131034112;
 			
 			// aapt resource value: 0x7f050002
 			public const int textView2 = 2131034114;
 			
-			// aapt resource value: 0x7f050013
-			public const int textView3 = 2131034131;
-			
 			// aapt resource value: 0x7f050014
-			public const int txtNote = 2131034132;
+			public const int textView3 = 2131034132;
+			
+			// aapt resource value: 0x7f050013
+			public const int txtCleanStatus = 2131034131;
+			
+			// aapt resource value: 0x7f050015
+			public const int txtNote = 2131034133;
 			
 			// aapt resource value: 0x7f050003
 			public const int txtPassword = 2131034115;
 			
-			// aapt resource value: 0x7f050012
-			public const int txtRoomCleanStatus = 2131034130;
+			// aapt resource value: 0x7f05000d
+			public const int txtRoomNo = 2131034125;
 			
-			// aapt resource value: 0x7f05000c
-			public const int txtRoomNo = 2131034124;
+			// aapt resource value: 0x7f050011
+			public const int txtRoomOccupiedStatus = 2131034129;
 			
-			// aapt resource value: 0x7f050010
-			public const int txtRoomOccupiedStatus = 2131034128;
-			
-			// aapt resource value: 0x7f05000e
-			public const int txtRoomType = 2131034126;
+			// aapt resource value: 0x7f05000f
+			public const int txtRoomType = 2131034127;
 			
 			// aapt resource value: 0x7f050005
 			public const int txtSysLog = 2131034117;
@@ -191,7 +194,10 @@ namespace RoomCheck
 			public const int MyRoomsMain = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int RoomDetails = 2130903043;
+			public const int RoomCleanSpinnerLayout = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int RoomDetails = 2130903044;
 			
 			static Layout()
 			{

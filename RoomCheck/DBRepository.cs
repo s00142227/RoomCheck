@@ -29,6 +29,7 @@ namespace RoomCheck
 
                 if (con.State == ConnectionState.Closed)
                 {
+                    //TODO: Where date = today and user = the user that is currently signed in
                     con.Open();
                     MySqlCommand cmd = new MySqlCommand("SELECT * FROM RoomTbl", con);
                     var reader = cmd.ExecuteReader();
@@ -187,6 +188,48 @@ namespace RoomCheck
 
             return cleanStatus;
         }
+        public JavaList<RoomCleanStatus> GetAllCleaningStatuses()
+        {
+            MySqlConnection con =
+                   new MySqlConnection(
+                       "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
+            JavaList<RoomCleanStatus> cleanStatuses = new JavaList<RoomCleanStatus>();
+            try
+            {
+
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM RoomCleanStatusTbl;", con))
+                    {
+                        
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                RoomCleanStatus cleanStatus = new RoomCleanStatus();
+                                cleanStatus.Description = (string)reader["Description"];
+                                cleanStatus.IconPath = (string)reader["IconPath"];
+                                cleanStatus.BorderImage = (string)reader["BorderImage"];
+                                cleanStatuses.Add(cleanStatus);
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                //Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return cleanStatuses;
+        }
 
         public RoomType GetRoomTypeById(int id)
         {
@@ -226,6 +269,43 @@ namespace RoomCheck
             }
 
             return roomType;
+        }
+
+        public bool UpdateRoom(int id, int cleanStat, string note)
+        {
+            MySqlConnection con =
+                   new MySqlConnection(
+                       "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
+
+            try
+            {
+
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand("UPDATE RoomTbl SET RoomCleanStatusID = @roomclean, Note = '@note' WHERE ID = @id; ", con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.Parameters.AddWithValue("@roomclean", cleanStat);
+                        cmd.Parameters.AddWithValue("@note", note);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                return true;
+
+            }
+            catch (MySqlException ex)
+            {
+                //Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+
         }
     }
 

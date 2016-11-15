@@ -111,8 +111,11 @@ namespace RoomCheck
             var background = (int)typeof(Resource.Drawable).GetField(roomCleanStatus.BorderImage).GetValue(null);
             view.FindViewById<ImageView>(Resource.Id.imgRoomIcon).SetBackgroundResource(background);
 
+ 
+
             return view;
         }
+
     }
 
     
