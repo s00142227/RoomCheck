@@ -32,6 +32,7 @@ namespace RoomCheck
             CleanStatusID = cleanStatus;
             RoomTypeID = roomType;
             Note = note;
+            //todo: add list of events here
         }
 
         public Room()
@@ -64,9 +65,23 @@ namespace RoomCheck
 
     public class User
     {
-        //TODO: fill in later
+        //TODO: fill in later and add usertype
     }
 
-    //TODO: add event tables
+    public class EventType
+    {
+        public int ID { get; set; }
+        public string Description { get; set; }
+        public string IconPath { get; set; }
+    }
 
+    public class Event
+    {
+        public int ID { get; set; }
+        public int EventTypeID { get; set; }
+        public string Description { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public List<Room> Rooms { get; set; }
+    }
 }

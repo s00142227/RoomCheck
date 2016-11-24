@@ -57,6 +57,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtRoomOccupiedStatus" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayout1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_gallery"
+                android:id="@+id/imgRoomOccupiedStatus"
+                android:minHeight="70dp"
+                android:minWidth="50dp"
+                android:padding="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp" />
+            <TextView
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtRoomOccupiedStatus" />
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -68,7 +93,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/sprRoomClean"
             android:spinnerMode="dialog"
-            
             android:minHeight="70dp"
             android:minWidth="50dp"
             android:padding="10dp"
@@ -82,6 +106,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtCleanStatus" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_gallery"
+            android:id="@+id/imgEventType"
+            android:minHeight="70dp"
+            android:minWidth="50dp"
+            android:padding="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp" />
+        <TextView
+            android:text="Event Name"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtRoomType" />
     </LinearLayout>
     <TextView
         android:text="Note"

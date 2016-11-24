@@ -306,6 +306,132 @@ namespace RoomCheck
             }
 
         }
+
+        public EventType GetEventTypeById(int id)
+        {
+            MySqlConnection con =
+                   new MySqlConnection(
+                       "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
+            EventType eventType = new EventType();
+            try
+            {
+
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM EventTypeTbl where ID = @id;", con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                eventType.ID = (int) reader["ID"];
+                                eventType.Description = (string)reader["Description"];
+                                eventType.IconPath = (string)reader["IconPath"];
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                //Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return eventType;
+        }
+
+        public Event GetEventById(int id)
+        {
+            MySqlConnection con =
+                   new MySqlConnection(
+                       "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
+            Event eventE = new Event();
+            try
+            {
+
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM EventTbl where ID = @id;", con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                eventE.ID = (int)reader["ID"];
+                                eventE.Description = (string)reader["Description"];
+                                eventE.StartTime = (DateTime)reader["StartTime"];
+                                eventE.EndTime = (DateTime)reader["EndTime"];
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                //Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return eventE;
+        }
+
+        public List<Room> GetRoomsForEvent(int id)
+        {
+            MySqlConnection con =
+                   new MySqlConnection(
+                       "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
+            List<Room> rooms = new List<Room>();
+            try
+            {
+
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+
+                   
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM RoomEvent where EventID = @id;", con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int roomID = (int) reader["RoomID"];
+                                Room room = GetRoomById(roomID);
+                                //todo: only add to list if the date is today's date
+                                rooms.Add(room);
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                //Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return rooms;
+        }
     }
 
     
