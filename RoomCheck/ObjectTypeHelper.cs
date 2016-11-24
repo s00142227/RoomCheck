@@ -20,4 +20,6 @@ namespace RoomCheck
             return propertyInfo == null ? null : propertyInfo.GetValue(obj, null) as T;
         }
     }
+
+  
 }

@@ -92,8 +92,33 @@ namespace RoomCheck
 
             Button btnSave = FindViewById<Button>(Resource.Id.btnSave);
             btnSave.Click += BtnSaveOnClick;
+            
+            //TODO: set room clean status spinner to have the rooms status selected rather than just the first value
+            //sprCleanStat.SelectedItem = sprCleanStat
+            RoomCleanStatus rc = dbr.GetCleanStatusById(room.CleanStatusID);
+            
+            sprRoomClean.SetSelection(room.CleanStatusID - 1);
 
-        }
+
+    }
+
+        //tried to use this method when setting the selection for the spinner but was havign problems
+        //getting the id of an item at a certain position in the spinner. So to compromise above
+        //i am just assuming that the index will be the item id - 1
+        //private int getIndex(Spinner spinner, int id)
+        //{
+        //    int index = 0;
+        //    for (int i = 0; i < spinner.Count; i++)
+        //    {
+        //        int rcid = Convert.ToInt32(spinner.Adapter.GetItemId(i));
+        //        if (rcid == id)
+        //        {
+        //            index = i;
+        //    }
+        //            break;
+        //        }
+        //    return index;
+        //}
 
         private void SprRoomCleanOnItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
@@ -103,8 +128,17 @@ namespace RoomCheck
 
         private void BtnSaveOnClick(object sender, EventArgs eventArgs)
         {
-            //TODO: get the room id, cleaning status and note and then update database and close the view (and/or show a popup)
-            
+            int id = Intent.GetIntExtra("RoomID", 0);
+            TextView txtCleanStat = FindViewById<TextView>(Resource.Id.txtCleanStatus);
+            EditText txtNote = FindViewById<EditText>(Resource.Id.txtNote);
+
+            dbr.UpdateRoom(id, txtCleanStat.Text, txtNote.Text);
+
+            //Toast.MakeText(this, "Room Updated", ToastLength.Short).Show();
+            //might need more feedback for user here i.e. a popup message when they go back to previous screen
+            //TODO: is there a better approach than starting the activity again? might be doable once i have pull-to-refresh implemented
+            StartActivity(typeof(MyRoomsActivity));
+
         }
 
         public class RoomCleanSpinnerAdapter : BaseAdapter<RoomCleanStatus>
@@ -122,10 +156,12 @@ namespace RoomCheck
 
             public override RoomCleanStatus this[int position]
             {
-                get
-                {
-                    throw new NotImplementedException();
-                }
+                get { throw new NotImplementedException(); }
+            }
+
+            public long GetItemIdAtPosition(int position)
+            {
+                return cleanstatuses[position].ID;
             }
 
             public override int Count
@@ -135,12 +171,12 @@ namespace RoomCheck
 
             public override long GetItemId(int position)
             {
-                return position;
+                return cleanstatuses[position].ID;
             }
 
-            public override Object GetItem(int position)
+            public RoomCleanStatus GetItemCleanStatus(int position)
             {
-                return cleanstatuses.Get(position);
+                return cleanstatuses[position];
             }
 
             public override View GetView(int position, View convertView, ViewGroup parent)
@@ -162,5 +198,7 @@ namespace RoomCheck
                 return convertView;
             }
         }
+
+
     }
 }

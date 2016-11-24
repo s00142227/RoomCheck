@@ -209,6 +209,7 @@ namespace RoomCheck
                             while (reader.Read())
                             {
                                 RoomCleanStatus cleanStatus = new RoomCleanStatus();
+                                cleanStatus.ID = (int) reader["ID"];
                                 cleanStatus.Description = (string)reader["Description"];
                                 cleanStatus.IconPath = (string)reader["IconPath"];
                                 cleanStatus.BorderImage = (string)reader["BorderImage"];
@@ -271,7 +272,7 @@ namespace RoomCheck
             return roomType;
         }
 
-        public bool UpdateRoom(int id, int cleanStat, string note)
+        public void UpdateRoom(int id, string cleanStat, string note)
         {
             MySqlConnection con =
                    new MySqlConnection(
@@ -284,7 +285,7 @@ namespace RoomCheck
                 {
                     con.Open();
 
-                    using (MySqlCommand cmd = new MySqlCommand("UPDATE RoomTbl SET RoomCleanStatusID = @roomclean, Note = '@note' WHERE ID = @id; ", con))
+                    using (MySqlCommand cmd = new MySqlCommand("UPDATE RoomTbl SET RoomCleanStatusID = (SELECT ID from RoomCleanStatusTbl WHERE Description LIKE @roomclean), Note = @note WHERE ID = @id;", con))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
                         cmd.Parameters.AddWithValue("@roomclean", cleanStat);
@@ -293,13 +294,11 @@ namespace RoomCheck
                     }
                 }
 
-                return true;
 
             }
             catch (MySqlException ex)
             {
                 //Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
-                return false;
             }
             finally
             {
