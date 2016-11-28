@@ -432,6 +432,137 @@ namespace RoomCheck
 
             return rooms;
         }
+
+        public bool CheckEvents(int id)
+        {
+            bool result = false;
+            MySqlConnection con =
+                   new MySqlConnection(
+                       "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
+
+            try
+            {
+
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                    //TODO: add in join to the table and check if the event date matches the room date (leaving this out for testing purposes)
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT count(*) as noEvents FROM RoomEventTbl where RoomID = @id;", con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                //problem is with the if statement below, never getting into the statements below that
+                                if (reader["noEvents"] is int)
+                                {
+                                    int noEvents = (int) reader["noEvents"];
+                                    result = noEvents > 0;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                //Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return result;
+        }
+
+        public List<Event> EventsForRoom(int id)
+        {
+            List<Event> events = new List<Event>();
+            MySqlConnection con =
+                   new MySqlConnection(
+                       "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
+
+            try
+            {
+
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                    //TODO: add in join to the table and check if the event date matches the room date (leaving this out for testing purposes)
+                    //TODO: populate event type for the event straight away here using joins, to prevent need for connecting again
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT ev FROM EventTbl ev JOIN RoomEventTbl rev ON ev.ID = rev.EventID WHERE rev.RoomID = @id;", con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Event ev = new Event();
+                                ev.ID = (int) reader["ID"];
+                                ev.Description = (string) reader["Description"];
+                                ev.EventTypeID = (int) reader["EventTypeID"];
+                                ev.StartTime = (DateTime) reader["StartTime"];
+                                ev.EndTime = (DateTime) reader["EndTime"];
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                //Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return events;
+        }
+        public EventType GetEventTypeByID(int id)
+        {
+            EventType et = new EventType();
+            MySqlConnection con =
+                   new MySqlConnection(
+                       "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
+
+            try
+            {
+
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM EventTypeTbl WHERE ID = @id;", con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                et.ID = (int)reader["ID"];
+                                et.Description = (string)reader["Description"];
+                                et.IconPath = (string) reader["IconPath"];
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                //Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return et;
+        }
     }
 
     
