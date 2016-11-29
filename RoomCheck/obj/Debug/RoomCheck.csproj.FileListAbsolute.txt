@@ -62,5 +62,10 @@ C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\Syste
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\RoomCheck.csprojResolveAssemblyReference.cache
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\breakfast.png
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\conference.png
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\tour.png
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\wedding.png
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\conferencesmall.png
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\RoomCheck.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\RoomCheck.dll.mdb

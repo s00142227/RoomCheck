@@ -114,7 +114,7 @@ namespace RoomCheck
                 List<Event> events = dbr.EventsForRoom(room.ID);
 
                 //TODO: check which event is happening right now or just use first in the list
-                //TODO: maybe change the layout to an expandibla list of events instead of just displaying one?
+                //TODO: maybe change the layout to an expandable list of events instead of just displaying one?
                 Event currentEvent = events[0];
                 EventType eventType = dbr.GetEventTypeByID(currentEvent.EventTypeID);
 
@@ -122,8 +122,7 @@ namespace RoomCheck
                 int eventTypeResourceId = (int)typeof(Resource.Drawable).GetField(eventType.IconPath).GetValue(null);
                 imgEventType.SetImageResource(eventTypeResourceId);
                 txtEvent.Text = currentEvent.Description;
-                txtEventTime.Text = string.Format("{0} - {1}", currentEvent.StartTime.TimeOfDay.ToString(),
-                    currentEvent.EndTime.TimeOfDay.ToString());
+                txtEventTime.Text = string.Format("{0} - {1}", currentEvent.StartTime.TimeOfDay, currentEvent.EndTime.TimeOfDay);
 
 
                 llEvent.Visibility = ViewStates.Visible; 

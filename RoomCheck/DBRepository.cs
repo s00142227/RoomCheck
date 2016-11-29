@@ -450,18 +450,9 @@ namespace RoomCheck
                     using (MySqlCommand cmd = new MySqlCommand("SELECT count(*) as noEvents FROM RoomEventTbl where RoomID = @id;", con))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                //problem is with the if statement below, never getting into the statements below that
-                                if (reader["noEvents"] is int)
-                                {
-                                    int noEvents = (int) reader["noEvents"];
-                                    result = noEvents > 0;
-                                }
-                            }
-                        }
+                        int mysqlint = int.Parse(cmd.ExecuteScalar().ToString());
+
+                        result = mysqlint > 0;
                     }
                 }
 
@@ -493,7 +484,7 @@ namespace RoomCheck
                     con.Open();
                     //TODO: add in join to the table and check if the event date matches the room date (leaving this out for testing purposes)
                     //TODO: populate event type for the event straight away here using joins, to prevent need for connecting again
-                    using (MySqlCommand cmd = new MySqlCommand("SELECT ev FROM EventTbl ev JOIN RoomEventTbl rev ON ev.ID = rev.EventID WHERE rev.RoomID = @id;", con))
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT ev.* FROM EventTbl ev JOIN RoomEventTbl rev ON ev.ID = rev.EventID WHERE rev.RoomID = @id;", con))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -502,10 +493,11 @@ namespace RoomCheck
                             {
                                 Event ev = new Event();
                                 ev.ID = (int) reader["ID"];
-                                ev.Description = (string) reader["Description"];
-                                ev.EventTypeID = (int) reader["EventTypeID"];
-                                ev.StartTime = (DateTime) reader["StartTime"];
+                                ev.Description = (string)reader["Description"];
+                                ev.EventTypeID = (int)reader["EventTypeID"];
+                                ev.StartTime = (DateTime)reader["StartTime"];
                                 ev.EndTime = (DateTime) reader["EndTime"];
+                                events.Add(ev);
                             }
                         }
                     }

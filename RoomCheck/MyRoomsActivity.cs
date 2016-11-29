@@ -111,6 +111,35 @@ namespace RoomCheck
             var background = (int)typeof(Resource.Drawable).GetField(roomCleanStatus.BorderImage).GetValue(null);
             view.FindViewById<ImageView>(Resource.Id.imgRoomIcon).SetBackgroundResource(background);
 
+
+            //TODO: if there is currently an event on for the room get the event type and display
+            ImageView imgEventNotification = view.FindViewById<ImageView>(Resource.Id.imgEventNotification);
+
+            if (dbr.CheckEvents(item.ID))
+            {
+                List<Event> roomEvents = dbr.EventsForRoom(item.ID);
+                foreach (Event e in roomEvents)
+                {
+                    //TODO: remove .TimeOfDay (just there for test purposes)
+                    if (DateTime.Now.TimeOfDay >= e.StartTime.TimeOfDay && DateTime.Now.TimeOfDay < e.EndTime.TimeOfDay)
+                    {
+                        EventType et = dbr.GetEventTypeByID(e.EventTypeID);
+                        //show the notification icon
+                        var eventNotifResourceId = (int) typeof(Resource.Drawable).GetField(et.IconPath + "Small").GetValue(null);
+                        imgEventNotification.SetImageResource(eventNotifResourceId);
+                        imgEventNotification.Visibility = ViewStates.Visible;
+
+                        //Guest is away at an event - we can change their occupied status to unoccupied
+                        //TODO: implement properly (actually update database here or else have a sql job to handle this)
+                        var roomOccResourceIdAway = (int)typeof(Resource.Drawable).GetField("Unoccupied").GetValue(null);
+                        imgRoomIcon.SetImageResource(roomOccResourceIdAway);
+                    }
+                    else
+                    {
+                        imgEventNotification.Visibility = ViewStates.Invisible;
+                    }
+                }
+            }
  
 
             return view;

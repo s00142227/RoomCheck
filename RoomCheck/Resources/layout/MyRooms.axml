@@ -5,38 +5,54 @@
     android:gravity="center"
     android:layout_height="match_parent"
     android:minWidth="25px"
-              android:paddingTop="10dp"
+    android:paddingTop="10dp"
     android:minHeight="25px">
-  <LinearLayout
-      android:orientation="vertical"
-      android:minHeight="25px"
-      android:gravity="center"
-      android:minWidth="25px"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:id="@+id/linearLayout1">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imgRoomIcon"
-        android:minHeight="70dp"
-        android:minWidth="50dp"
-        android:padding="10dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:background="@drawable/border_image_green" />
-    <TextView
-        android:text="000"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/lblRoomNo"
-        android:layout_width="wrap_content"
-        android:minWidth="50dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="10dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imgRoomIcon"
-        android:gravity="center" />
-  </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:minHeight="25px"
+        android:gravity="center"
+        android:minWidth="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayout1">
+        <RelativeLayout
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relativeLayout1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imgRoomIcon"
+                android:minHeight="70dp"
+                android:minWidth="50dp"
+                android:padding="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:background="@drawable/border_image_green" />
+            <ImageView
+                android:src="@android:drawable/ic_menu_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:visibility="invisible"
+                android:id="@+id/imgEventNotification" />
+        </RelativeLayout>
+        <TextView
+            android:text="000"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/lblRoomNo"
+            android:layout_width="wrap_content"
+            android:minWidth="50dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgRoomIcon"
+            android:gravity="center" />
+    </LinearLayout>
 </LinearLayout>
