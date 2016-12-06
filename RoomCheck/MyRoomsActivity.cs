@@ -112,7 +112,15 @@ namespace RoomCheck
             view.FindViewById<ImageView>(Resource.Id.imgRoomIcon).SetBackgroundResource(background);
 
 
-            //TODO: if there is currently an event on for the room get the event type and display
+            //If there is a note on the room - show the note icon
+            ImageView imgNote = view.FindViewById<ImageView>(Resource.Id.imgNote);
+            if (item.Note != "" && item.Note != null)
+                imgNote.Visibility = ViewStates.Visible;
+            else
+                imgNote.Visibility = ViewStates.Invisible;
+
+
+            //Check if there is currently an event for the room and show icon
             ImageView imgEventNotification = view.FindViewById<ImageView>(Resource.Id.imgEventNotification);
 
             if (dbr.CheckEvents(item.ID))

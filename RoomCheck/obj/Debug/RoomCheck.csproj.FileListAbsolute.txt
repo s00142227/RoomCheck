@@ -67,5 +67,9 @@ C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\confere
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\tour.png
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\wedding.png
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\conferencesmall.png
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\breakfastsmall.png
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\info.png
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\toursmall.png
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\weddingsmall.png
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\RoomCheck.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\RoomCheck.dll.mdb
