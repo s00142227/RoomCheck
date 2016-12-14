@@ -29,7 +29,6 @@ namespace RoomCheck
             // Create your application here
             SetContentView(Resource.Layout.MyRoomsMain);
 
-            //TODO: change to gridview
             gridview = FindViewById<GridView>(Resource.Id.lstRooms);
 
             rooms = dbr.GetAllRooms();
@@ -97,7 +96,8 @@ namespace RoomCheck
             RoomCleanStatus roomCleanStatus = dbr.GetCleanStatusById(item.CleanStatusID);
             RoomType roomType = dbr.GetRoomTypeById(item.RoomTypeID);
 
-            //TODO: if room type is empty grey out the icon and border (room occupied status shoud always be unoccupied on empty rooms
+            
+
             ImageView imgRoomIcon = view.FindViewById<ImageView>(Resource.Id.imgRoomIcon);
 
             //populate room number labels
@@ -108,13 +108,26 @@ namespace RoomCheck
             imgRoomIcon.SetImageResource(roomOccResourceId);
 
             //change border colour to reflect cleaning status
-            var background = (int)typeof(Resource.Drawable).GetField(roomCleanStatus.BorderImage).GetValue(null);
-            view.FindViewById<ImageView>(Resource.Id.imgRoomIcon).SetBackgroundResource(background);
+            //var background = (int)typeof(Resource.Drawable).GetField(roomCleanStatus.BorderImage).GetValue(null);
+            //view.FindViewById<ImageView>(Resource.Id.imgRoomIcon).SetBackgroundResource(background);
 
+            //change background color to reflect cleaning status
+            LinearLayout listItem = view.FindViewById<LinearLayout>(Resource.Id.llMyRoomsListItem);
+            listItem.SetBackgroundColor(Android.Graphics.Color.ParseColor(roomCleanStatus.BorderImage));
+
+            //TODO: if room type is empty grey out the icon and border (room occupied status shoud alw-ays be unoccupied on empty rooms
+            if (roomType.Description == "Empty")
+            {
+                roomOccResourceId = (int)typeof(Resource.Drawable).GetField("Unoccupied").GetValue(null);
+                imgRoomIcon.SetImageResource(roomOccResourceId);
+
+                view.FindViewById<TextView>(Resource.Id.lblRoomNo).SetTextColor(Android.Graphics.Color.ParseColor("#808080"));
+                listItem.SetBackgroundColor(Android.Graphics.Color.ParseColor("#e6e6e6"));
+            }
 
             //If there is a note on the room - show the note icon
             ImageView imgNote = view.FindViewById<ImageView>(Resource.Id.imgNote);
-            if (item.Note != "" && item.Note != null)
+            if (!string.IsNullOrEmpty(item.Note))
                 imgNote.Visibility = ViewStates.Visible;
             else
                 imgNote.Visibility = ViewStates.Invisible;
