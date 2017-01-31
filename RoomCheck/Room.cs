@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Media;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -17,11 +18,16 @@ namespace RoomCheck
         public int ID { get; set; }
         public string RoomNo { get; set; }
         public int OccupiedStatusID { get; set; }
+        public RoomType RoomType { get; set; }
+        public RoomOccupiedStatus OccupiedStatus { get; set; }
+        public RoomCleanStatus CleanStatus { get; set; }
         public int CleanStatusID { get; set; }
         public int RoomTypeID { get; set; }
         public string Note { get; set; }
         public int NoGuests { get; set; }
         public int UserID { get; set; }
+        public User User { get; set; }
+        public List<Event> Events { get; set; }
         public DateTime Date { get; set; }
 
         public Room(int id,string roomNo, int occupiedStatus, int cleanStatus, int roomType, string note)
@@ -33,6 +39,7 @@ namespace RoomCheck
             RoomTypeID = roomType;
             Note = note;
             //todo: add list of events here
+
         }
 
         public Room()
@@ -79,6 +86,7 @@ namespace RoomCheck
     {
         public int ID { get; set; }
         public int EventTypeID { get; set; }
+        public EventType EventType { get; set; }
         public string Description { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }

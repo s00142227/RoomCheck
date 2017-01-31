@@ -32,6 +32,8 @@ namespace RoomCheck
             gridview = FindViewById<GridView>(Resource.Id.lstRooms);
 
             rooms = dbr.GetAllRooms();
+
+            dbr.GetAllRoomInfo(ref rooms);
         
             gridview.Adapter = new RoomAdapter(this, rooms);
 
@@ -62,7 +64,7 @@ namespace RoomCheck
 
     public class RoomAdapter : BaseAdapter<Room>
     {
-        DBRepository dbr = new DBRepository();
+        //DBRepository dbr = new DBRepository();
 
         List<Room> items;
         Activity context;
@@ -92,11 +94,9 @@ namespace RoomCheck
 
             //TODO: see how often this method is getting called and if there are any changes i can make to optimise
 
-            RoomOccupiedStatus roomOccStatus = dbr.GetOccupiedStatusById(item.OccupiedStatusID);
-            RoomCleanStatus roomCleanStatus = dbr.GetCleanStatusById(item.CleanStatusID);
-            RoomType roomType = dbr.GetRoomTypeById(item.RoomTypeID);
-
-            
+            RoomOccupiedStatus roomOccStatus = item.OccupiedStatus;
+            RoomCleanStatus roomCleanStatus = item.CleanStatus;
+            RoomType roomType = item.RoomType;
 
             ImageView imgRoomIcon = view.FindViewById<ImageView>(Resource.Id.imgRoomIcon);
 
@@ -136,15 +136,15 @@ namespace RoomCheck
             //Check if there is currently an event for the room and show icon
             ImageView imgEventNotification = view.FindViewById<ImageView>(Resource.Id.imgEventNotification);
 
-            if (dbr.CheckEvents(item.ID))
+            if (item.Events.Count > 0)
             {
-                List<Event> roomEvents = dbr.EventsForRoom(item.ID);
+                List<Event> roomEvents = item.Events;
                 foreach (Event e in roomEvents)
                 {
                     //TODO: remove .TimeOfDay (just there for test purposes)
                     if (DateTime.Now.TimeOfDay >= e.StartTime.TimeOfDay && DateTime.Now.TimeOfDay < e.EndTime.TimeOfDay)
                     {
-                        EventType et = dbr.GetEventTypeByID(e.EventTypeID);
+                        EventType et = e.EventType;
                         //show the notification icon
                         var eventNotifResourceId = (int) typeof(Resource.Drawable).GetField(et.IconPath + "Small").GetValue(null);
                         imgEventNotification.SetImageResource(eventNotifResourceId);

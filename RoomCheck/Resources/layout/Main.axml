@@ -8,7 +8,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
+        android:id="@+id/textView1"
+        android:layout_marginTop="50dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,24 +26,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtPassword" />
     <Button
-        android:text="Insert"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnInsert" />
-    <TextView
-        android:text="System Log"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtSysLog" />
-    <Button
-        android:text="Show ALL Users"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnShowRecords" />
-    <Button
-        android:text="My Rooms"
+        android:text="Log In"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnRoomList" />
+    <Button
+        android:text="First Day?"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnShowRecords" />
 </LinearLayout>

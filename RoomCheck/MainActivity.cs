@@ -10,7 +10,8 @@ using System.Data;
 
 namespace RoomCheck
 {
-    [Activity(Label = "RoomCheck", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "RoomCheck", Icon = "@drawable/icon")]
+    // MainLauncher = true, -- this was removed to allow for splash screen
     public class MainActivity : Activity
     {
 
@@ -26,14 +27,16 @@ namespace RoomCheck
             SetContentView(Resource.Layout.Main);
 
             txtUsername = FindViewById<EditText>(Resource.Id.txtUsername);
+            txtUsername.Text = "janedoe";
             txtPassword = FindViewById<EditText>(Resource.Id.txtPassword);
-            btnInsert = FindViewById<Button>(Resource.Id.btnInsert);
-            txtSysLog = FindViewById<TextView>(Resource.Id.txtSysLog);
+            txtPassword.Text = "password";
+            //btnInsert = FindViewById<Button>(Resource.Id.btnInsert);
+            //txtSysLog = FindViewById<TextView>(Resource.Id.txtSysLog);
 
-            btnInsert.Click += BtnInsert_Click;
+            //btnInsert.Click += BtnInsert_Click;
 
-            Button btnShowALL = FindViewById<Button>(Resource.Id.btnShowRecords);
-            btnShowALL.Click += BtnShowALL_Click;
+            //Button btnShowALL = FindViewById<Button>(Resource.Id.btnShowRecords);
+            //btnShowALL.Click += BtnShowALL_Click;
 
             Button btnRoomList = FindViewById<Button>(Resource.Id.btnRoomList);
             btnRoomList.Click += BtnRoomListOnClick;
@@ -41,14 +44,17 @@ namespace RoomCheck
 
         private void BtnRoomListOnClick(object sender, EventArgs eventArgs)
         {
-            StartActivity(typeof(MyRoomsActivity));
+            //StartActivity(typeof(MyRoomsActivity));
+            var splashActivity = new Intent(this, typeof(SplashActivity));
+            splashActivity.PutExtra("Activity", "MyRoomsActivity");
+            StartActivity(splashActivity);
         }
 
         private void BtnShowALL_Click(object sender, EventArgs e)
         {
             MySqlConnection con =
                    new MySqlConnection(
-                       "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
+                       "Server=roomcheckaurora.cluster-cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=s00142227;Password=Lollipop12;charset=utf8");
 
             try
             {
@@ -86,8 +92,7 @@ namespace RoomCheck
         {
             MySqlConnection con =
                     new MySqlConnection(
-                        "Server=s00142227db.cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=kmorris;Password=s00142227;charset=utf8");
-
+"Server=roomcheckaurora.cluster-cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=s00142227;Password=Lollipop12;charset=utf8");
             try
             {
                 

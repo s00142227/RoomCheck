@@ -8,6 +8,10 @@ C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\Syste
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\System.Xml.dll
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\System.Xml.Linq.dll
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\MySql.Data.CF.dll
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\Xamarin.Android.Support.Animated.Vector.Drawable.dll
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\Xamarin.Android.Support.v4.dll
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\Xamarin.Android.Support.v7.AppCompat.dll
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\Xamarin.Android.Support.Vector.Drawable.dll
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\System.Threading.dll
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\System.Runtime.dll
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\System.ComponentModel.Composition.dll
