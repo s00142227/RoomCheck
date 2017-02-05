@@ -19,6 +19,8 @@ namespace RoomCheck
         private Button btnInsert;
         private TextView txtSysLog;
 
+        private Button btnSignUp;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -26,10 +28,16 @@ namespace RoomCheck
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            txtUsername = FindViewById<EditText>(Resource.Id.txtUsername);
-            txtUsername.Text = "janedoe";
-            txtPassword = FindViewById<EditText>(Resource.Id.txtPassword);
-            txtPassword.Text = "password";
+            //NEW CODE: ANDROID LOGIN/SIGN UP TUTORIAL 
+            btnSignUp = FindViewById<Button>(Resource.Id.btnSignUp);
+            btnSignUp.Click += BtnSignUpOnClick;
+
+
+            //OLD CODE FROM MYSQL TUTORIAL
+            //txtUsername = FindViewById<EditText>(Resource.Id.txtUsername);
+            //txtUsername.Text = "janedoe";
+            //txtPassword = FindViewById<EditText>(Resource.Id.txtPassword);
+            //txtPassword.Text = "password";
             //btnInsert = FindViewById<Button>(Resource.Id.btnInsert);
             //txtSysLog = FindViewById<TextView>(Resource.Id.txtSysLog);
 
@@ -38,17 +46,26 @@ namespace RoomCheck
             //Button btnShowALL = FindViewById<Button>(Resource.Id.btnShowRecords);
             //btnShowALL.Click += BtnShowALL_Click;
 
-            Button btnRoomList = FindViewById<Button>(Resource.Id.btnRoomList);
-            btnRoomList.Click += BtnRoomListOnClick;
+            //Button btnRoomList = FindViewById<Button>(Resource.Id.btnRoomList);
+            //btnRoomList.Click += BtnRoomListOnClick;
         }
 
-        private void BtnRoomListOnClick(object sender, EventArgs eventArgs)
+        private void BtnSignUpOnClick(object sender, EventArgs eventArgs)
         {
-            //StartActivity(typeof(MyRoomsActivity));
-            var splashActivity = new Intent(this, typeof(SplashActivity));
-            splashActivity.PutExtra("Activity", "MyRoomsActivity");
-            StartActivity(splashActivity);
+            //Pull up dialog
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            dialog_SignUp signUpDialog = new dialog_SignUp();
+            signUpDialog.Show(transaction, "dialog fragment");
+
         }
+
+        //private void BtnRoomListOnClick(object sender, EventArgs eventArgs)
+        //{
+        //    //StartActivity(typeof(MyRoomsActivity));
+        //    var splashActivity = new Intent(this, typeof(SplashActivity));
+        //    splashActivity.PutExtra("Activity", "MyRoomsActivity");
+        //    StartActivity(splashActivity);
+        //}
 
         private void BtnShowALL_Click(object sender, EventArgs e)
         {

@@ -7,7 +7,6 @@ C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\Xamarin.Android.Supp
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\Xamarin.Android.Support.v4.dll
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\Xamarin.Android.Support.v7.AppCompat.dll
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\Xamarin.Android.Support.Vector.Drawable.dll
-C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\RoomCheck.csprojResolveAssemblyReference.cache
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\RoomCheck.dll
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\RoomCheck.pdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\bin\RoomCheck.RoomCheck.apk
@@ -46,6 +45,13 @@ C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\values\colors.xm
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\values\styles.xml
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\R.cs.flag
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\uploadflags.txt
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\buttonsigninstyle.xml
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\buttonsignupstyle.xml
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\progressbarstyle.xml
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\layout\dialog_sign_up.xml
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\edit_text_style.xml
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\anim\slide_up.xml
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\anim\slide_right.xml
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\RoomCheck.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\Java.Interop.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\Mono.Android.dll.mdb

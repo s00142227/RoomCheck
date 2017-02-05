@@ -1,38 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/background_light"
+    android:weightSum="100">
     <TextView
-        android:text="Username"
+        android:text="Create an Account"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:layout_marginTop="50dp" />
-    <EditText
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:textColor="#368deb"
+        android:id="@+id/txtCreateAccount"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:gravity="center" />
+    <Button
+        android:text="Sign In"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtUsername" />
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:id="@+id/btnSignIn"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/ButtonSignInStyle"
+        android:textSize="15sp"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:layout_marginRight="20dp" />
     <TextView
-        android:text="Password"
+        android:text="Or"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
-    <EditText
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtPassword" />
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:textColor="#000"
+        android:id="@+id/txtOr"
+        android:gravity="center" />
     <Button
-        android:text="Log In"
+        android:text="Sign Up with Hotel Id"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnRoomList" />
-    <Button
-        android:text="First Day?"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:id="@+id/btnSignUp"
+        android:layout_marginLeft="20dp"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/buttonsignupstyle" />
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnShowRecords" />
+        android:layout_height="0dp"
+        android:layout_weight="35"
+        android:minWidth="25px"
+        android:minHeight="25px">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar1"
+            android:layout_centerInParent="true"
+            android:background="@drawable/ProgressBarStyle"
+            android:indeterminate="true" />
+    </RelativeLayout>
 </LinearLayout>
