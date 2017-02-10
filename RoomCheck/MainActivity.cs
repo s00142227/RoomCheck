@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.Runtime;
@@ -7,6 +8,9 @@ using Android.Widget;
 using Android.OS;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Linq;
+using System.Threading;
+using SQLite;
 
 namespace RoomCheck
 {
@@ -14,12 +18,12 @@ namespace RoomCheck
     // MainLauncher = true, -- this was removed to allow for splash screen
     public class MainActivity : Activity
     {
-
-        private EditText txtUsername, txtPassword;
-        private Button btnInsert;
-        private TextView txtSysLog;
+        DBRepository dbr = new DBRepository();
+        public List<User> users = new List<User>();
 
         private Button btnSignUp;
+        private Button btnLogin;
+        private ProgressBar prgBar;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -32,22 +36,105 @@ namespace RoomCheck
             btnSignUp = FindViewById<Button>(Resource.Id.btnSignUp);
             btnSignUp.Click += BtnSignUpOnClick;
 
+            prgBar = FindViewById<ProgressBar>(Resource.Id.progressBar1);
 
-            //OLD CODE FROM MYSQL TUTORIAL
-            //txtUsername = FindViewById<EditText>(Resource.Id.txtUsername);
-            //txtUsername.Text = "janedoe";
-            //txtPassword = FindViewById<EditText>(Resource.Id.txtPassword);
-            //txtPassword.Text = "password";
-            //btnInsert = FindViewById<Button>(Resource.Id.btnInsert);
-            //txtSysLog = FindViewById<TextView>(Resource.Id.txtSysLog);
+            btnLogin = FindViewById<Button>(Resource.Id.btnSignIn);
+            btnLogin.Click += BtnLoginOnClick;
 
-            //btnInsert.Click += BtnInsert_Click;
+        }
 
-            //Button btnShowALL = FindViewById<Button>(Resource.Id.btnShowRecords);
-            //btnShowALL.Click += BtnShowALL_Click;
+        private void BtnLoginOnClick(object sender, EventArgs eventArgs)
+        {
+            //Pull up dialog
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            dialog_SignIn signInDialog = new dialog_SignIn();
+            signInDialog.Show(transaction, "dialog fragment");
 
-            //Button btnRoomList = FindViewById<Button>(Resource.Id.btnRoomList);
-            //btnRoomList.Click += BtnRoomListOnClick;
+            signInDialog.onSignInComplete += SignInDialogOnOnSignInComplete;
+        }
+
+        private void SignInDialogOnOnSignInComplete(object sender, OnSignInEventArgs e)
+        {
+            prgBar.Visibility = ViewStates.Visible;
+
+            LogIn(e.Email, e.Password);
+        }
+
+        private void LogIn(string email, string password)
+        {
+            //todo: log user in and start the next activity
+            users = dbr.GetAllUsersInfo();
+
+            if (CheckUserCredentials(email, password))
+            {
+
+                User user = users.FirstOrDefault(u => u.Email == email);
+                SaveToSQLite(user);
+                
+                
+                //start new activity
+                StartActivity(typeof(MyRoomsActivity));
+
+            }
+            else
+            {
+                Toast.MakeText(this, "Invalid email or password", ToastLength.Long).Show();
+            }
+
+
+            prgBar.Visibility = ViewStates.Invisible;
+
+        }
+
+        private void SaveToSQLite(User user)
+        {
+            //Save the logged in user to the sqlite database to be fetched on the next screen or next time
+            //the app is opened
+            var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+            var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet.db");
+
+            var result = createDatabase(pathToDatabase);
+            var db = new SQLiteConnection(pathToDatabase, true);
+
+            if (db.Insert(user) != 0)
+                db.Update(user);
+
+        }
+
+        private string createDatabase(string path)
+        {
+            try
+            {
+                var connection = new SQLiteAsyncConnection(path);
+                {
+                    connection.CreateTableAsync<User>();
+                    return "Database created";
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        private bool CheckUserCredentials(string email, string password)
+        {
+
+            if (users.Any(u => u.Email == email))
+            {
+                User user = users.FirstOrDefault(u => u.Email == email);
+                var salt = user.Salt;
+                var passAttempt = Crypto.EncryptAes(password, "roomcheckpassword", salt);
+                //these are the same when i look when debugging, do i need to convert to strings to compare?
+                if (passAttempt.ToString() == user.Password.ToString())
+                {
+                    return true;
+                }
+                //passwords don't match
+                return false;
+            }
+            //email doesnt exist
+            return false;
         }
 
         private void BtnSignUpOnClick(object sender, EventArgs eventArgs)
@@ -57,86 +144,37 @@ namespace RoomCheck
             dialog_SignUp signUpDialog = new dialog_SignUp();
             signUpDialog.Show(transaction, "dialog fragment");
 
+            signUpDialog.onSignUpComplete += SignUpDialogOnOnSignUpComplete;
+
         }
 
-        //private void BtnRoomListOnClick(object sender, EventArgs eventArgs)
-        //{
-        //    //StartActivity(typeof(MyRoomsActivity));
-        //    var splashActivity = new Intent(this, typeof(SplashActivity));
-        //    splashActivity.PutExtra("Activity", "MyRoomsActivity");
-        //    StartActivity(splashActivity);
-        //}
-
-        private void BtnShowALL_Click(object sender, EventArgs e)
+        private void SignUpDialogOnOnSignUpComplete(object sender, OnSignUpEventArgs e)
         {
-            MySqlConnection con =
-                   new MySqlConnection(
-                       "Server=roomcheckaurora.cluster-cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=s00142227;Password=Lollipop12;charset=utf8");
-
-            try
+            prgBar.Visibility = ViewStates.Visible;
+            
+            //here we can use e.HotelID etc fromt he dialog
+            if (!dbr.CheckEmailExists(e.Email))
             {
-
-                if (con.State == ConnectionState.Closed)
+                if (dbr.CheckHotelID(e.HotelID))
                 {
-                    con.Open();
-                    var result = "";
-                    MySqlCommand cmd = new MySqlCommand("SELECT * FROM tblTest", con);
-                    var reader = cmd.ExecuteReader();
-                    
-                    while (reader.Read())
-                    {
-                        var someValue = reader["user"];
-
-                        result += (someValue + "\n");
-                    }
-
-                    Toast.MakeText(this, result, ToastLength.Short).Show();
-
+                    //create new user in the database
+                    dbr.CreateUser(e.Email, e.FirstName, e.Password, e.HotelID);
+                }
+                else
+                {
+                    Toast.MakeText(this, "Invalid Hotel ID", ToastLength.Long).Show();
                 }
             }
-            catch (MySqlException ex)
+            else
             {
-                txtSysLog.Text = ex.ToString();
-            }
-            finally
-            {
-                con.Close();
+                Toast.MakeText(this, "Email already exists", ToastLength.Long).Show();
             }
 
+            prgBar.Visibility = ViewStates.Invisible;
         }
 
-        private void BtnInsert_Click(object sender, EventArgs e)
-        {
-            MySqlConnection con =
-                    new MySqlConnection(
-"Server=roomcheckaurora.cluster-cshbhaowu4cu.eu-west-1.rds.amazonaws.com;Port=3306;database=RoomCheckDB;User Id=s00142227;Password=Lollipop12;charset=utf8");
-            try
-            {
-                
-                if (con.State == ConnectionState.Closed)
-                {
-                    con.Open();
-                    MySqlCommand cmd = new MySqlCommand("INSERT INTO tblTest(user,pass) VALUES(@user, @pass)", con);
-                    //txtSysLog.Text = "Successfully Connected";
-                    cmd.Parameters.AddWithValue("@user", txtUsername.Text);
-                    cmd.Parameters.AddWithValue("@pass", txtPassword.Text);
+        
 
-                    cmd.ExecuteNonQuery();
-                    txtSysLog.Text = "Data successfully inserted";
-
-                }
-            }
-            catch (MySqlException ex)
-            {
-                txtSysLog.Text = ex.ToString();
-            }
-            finally
-            {
-                con.Close();
-            }
-
-           
-        }
     }
 }
 

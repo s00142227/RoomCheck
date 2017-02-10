@@ -1,3 +1,7 @@
+RoomCheck.dialog_SignIn, RoomCheck;md570b85505b84735fef43634928b8e717d.dialog_SignIn
+RoomCheck.dialog_SignIn, RoomCheck, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md570b85505b84735fef43634928b8e717d.dialog_SignIn
+RoomCheck.dialog_SignIn;md570b85505b84735fef43634928b8e717d.dialog_SignIn
+roomcheck.dialog_SignIn;md570b85505b84735fef43634928b8e717d.dialog_SignIn
 RoomCheck.dialog_SignUp, RoomCheck;md570b85505b84735fef43634928b8e717d.dialog_SignUp
 RoomCheck.dialog_SignUp, RoomCheck, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md570b85505b84735fef43634928b8e717d.dialog_SignUp
 RoomCheck.dialog_SignUp;md570b85505b84735fef43634928b8e717d.dialog_SignUp

@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using MySql.Data.MySqlClient;
 using System.Data;
+using SQLite;
 
 namespace RoomCheck
 {
@@ -31,14 +32,46 @@ namespace RoomCheck
 
             gridview = FindViewById<GridView>(Resource.Id.lstRooms);
 
-            rooms = dbr.GetAllRooms();
+            //get user from database
+            var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+            var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet.db");
+
+            var result = createDatabase(pathToDatabase);
+            var db = new SQLiteConnection(pathToDatabase, true);
+            int userId = 0;
+
+            //fix this 
+            var firstOrDefault = db.Query<User>("Select * from User").FirstOrDefault();
+            if (firstOrDefault != null)
+            {
+                userId = firstOrDefault.ID;
+            }
+
+            rooms = dbr.GetAllRooms(userId);
 
             dbr.GetAllRoomInfo(ref rooms);
-        
+
             gridview.Adapter = new RoomAdapter(this, rooms);
 
             gridview.ItemClick += ListViewOnItemClick;
 
+
+        }
+
+        private string createDatabase(string path)
+        {
+            try
+            {
+                var connection = new SQLiteAsyncConnection(path);
+                {
+                    connection.CreateTableAsync<User>();
+                    return "Database created";
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                return ex.Message;
+            }
         }
 
         private void ListViewOnItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -146,7 +179,7 @@ namespace RoomCheck
                     {
                         EventType et = e.EventType;
                         //show the notification icon
-                        var eventNotifResourceId = (int) typeof(Resource.Drawable).GetField(et.IconPath + "Small").GetValue(null);
+                        var eventNotifResourceId = (int)typeof(Resource.Drawable).GetField(et.IconPath + "Small").GetValue(null);
                         imgEventNotification.SetImageResource(eventNotifResourceId);
                         imgEventNotification.Visibility = ViewStates.Visible;
 
@@ -161,12 +194,12 @@ namespace RoomCheck
                     }
                 }
             }
- 
+
 
             return view;
         }
 
     }
 
-    
+
 }

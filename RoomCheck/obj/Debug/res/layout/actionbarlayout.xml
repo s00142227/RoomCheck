@@ -1,0 +1,1 @@
+<LinearLayout style="@style/CustomTitleStyle" xmlns:android="http://schemas.android.com/apk/res/android"><TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:layout_height="match_parent" android:paddingLeft="15dp" android:text="@string/ApplicationName" /></LinearLayout>

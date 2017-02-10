@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using SQLite;
 
 namespace RoomCheck
 {
@@ -72,7 +73,17 @@ namespace RoomCheck
 
     public class User
     {
-        //TODO: fill in later and add usertype
+        [PrimaryKey]
+        public int ID { get; set; }
+        public byte[] Password { get; set; }
+        public string Email { get; set; }
+        public byte[] Salt { get; set; }
+        public string FirstName { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("[User: ID={0}, Password={1}, Email={2}, Salt={3}, Firstname={4}]", ID, Password, Email, Salt, FirstName);
+        }
     }
 
     public class EventType
