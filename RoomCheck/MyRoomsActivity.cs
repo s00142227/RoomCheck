@@ -21,6 +21,7 @@ namespace RoomCheck
         List<Room> rooms = new List<Room>();
         GridView gridview;
         DBRepository dbr = new DBRepository();
+        private SQLiteConnection db;
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -40,6 +41,11 @@ namespace RoomCheck
             var db = new SQLiteConnection(pathToDatabase, true);
             int userId = 0;
 
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetActionBar(toolbar);
+            ActionBar.Title = "My Rooms";
+            
+
             //fix this 
             var firstOrDefault = db.Query<User>("Select * from User").FirstOrDefault();
             if (firstOrDefault != null)
@@ -56,6 +62,35 @@ namespace RoomCheck
             gridview.ItemClick += ListViewOnItemClick;
 
 
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.top_menus, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            Toast.MakeText(this, "Action selected: " + item.TitleFormatted,
+                ToastLength.Short).Show();
+
+            //delete the user from sqlite and go back to the main activity - should provide the expected result
+            var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+            var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet.db");
+
+            var result = createDatabase(pathToDatabase);
+            db = new SQLiteConnection(pathToDatabase, true);
+
+            var count = db.ExecuteScalar<int>("SELECT Count(*) FROM User");
+            if (count > 0)
+            {
+                db.DeleteAll<User>();
+            }
+
+            StartActivity(typeof(SplashActivity));
+
+                return base.OnOptionsItemSelected(item);
         }
 
         private string createDatabase(string path)

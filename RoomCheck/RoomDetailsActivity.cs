@@ -13,6 +13,7 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Net.Mime;
 using Android.Content.Res;
+using SQLite;
 using Object = Java.Lang.Object;
 
 namespace RoomCheck
@@ -23,6 +24,7 @@ namespace RoomCheck
         public static DBRepository dbr = new DBRepository();
         public static JavaList<RoomCleanStatus> cleanstatuses;
         public static int roomID;
+        private SQLiteConnection db;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -31,10 +33,10 @@ namespace RoomCheck
             SetContentView(Resource.Layout.RoomDetails);
 
             // Create your application here
-           
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetActionBar(toolbar);
+            ActionBar.Title = "Room Details";
 
-            //might be better to store the current room object in the sqllite db from the previous view?
-            //would still have to query a database here but it wouldn't be the cloud database...
             roomID = Intent.GetIntExtra("RoomID", 0);
 
             Room room = dbr.GetRoomById(roomID);
@@ -150,10 +152,55 @@ namespace RoomCheck
         //    return index;
         //}
 
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.top_menus, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            Toast.MakeText(this, "Action selected: " + item.TitleFormatted,
+                ToastLength.Short).Show();
+
+            var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+            var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet.db");
+
+            var result = createDatabase(pathToDatabase);
+            db = new SQLiteConnection(pathToDatabase, true);
+
+            var count = db.ExecuteScalar<int>("SELECT Count(*) FROM User");
+            if (count > 0)
+            {
+                db.DeleteAll<User>();
+            }
+
+            StartActivity(typeof(SplashActivity));
+
+            return base.OnOptionsItemSelected(item);
+        }
+
         private void SprRoomCleanOnItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             TextView txtRoomClean = FindViewById<TextView>(Resource.Id.txtCleanStatus);
             txtRoomClean.Text = cleanstatuses[e.Position].Description;
+        }
+
+        private string createDatabase(string path)
+        {
+            try
+            {
+                var connection = new SQLiteAsyncConnection(path);
+                {
+                    connection.CreateTableAsync<User>();
+                    return "Database created";
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                return ex.Message;
+            }
         }
 
         private void BtnSaveOnClick(object sender, EventArgs eventArgs)

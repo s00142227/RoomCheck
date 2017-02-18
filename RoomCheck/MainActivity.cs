@@ -60,6 +60,10 @@ namespace RoomCheck
             LogIn(e.Email, e.Password);
         }
 
+        
+
+        
+
         private void LogIn(string email, string password)
         {
             //todo: log user in and start the next activity

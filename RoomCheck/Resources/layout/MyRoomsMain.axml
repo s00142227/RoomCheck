@@ -6,7 +6,9 @@
     android:gravity="center"
     android:minWidth="25px"
     android:minHeight="25px">
-    
+  <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
     <GridView
         android:minWidth="25px"
         android:minHeight="25px"
@@ -19,6 +21,5 @@
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
         android:stretchMode="columnWidth"
-        android:gravity="center"
-        />
+        android:gravity="center" />
 </LinearLayout>
