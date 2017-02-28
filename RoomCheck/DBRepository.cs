@@ -35,7 +35,7 @@ namespace RoomCheck
                 {
                     //TODO: Where date = today and user = the user that is currently signed in
                     con.Open();
-                    MySqlCommand cmd = new MySqlCommand("SELECT * FROM RoomTbl where UserID = @id", con);
+                    MySqlCommand cmd = new MySqlCommand("SELECT * FROM RoomTbl where UserID = @id and Date = '2016-10-31'", con);
                     cmd.Parameters.AddWithValue("@id", id);
                     var reader = cmd.ExecuteReader();
                     

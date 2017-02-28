@@ -66,7 +66,6 @@ namespace RoomCheck
 
         private void LogIn(string email, string password)
         {
-            //todo: log user in and start the next activity
             users = dbr.GetAllUsersInfo();
 
             if (CheckUserCredentials(email, password))
