@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal">
-  <include
+    <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
     <TextView
@@ -158,6 +158,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtNote" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight=".8"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Guest Request"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtGuestRequest"
+                android:editable="false" />
+        </LinearLayout>
+        <ImageButton
+            android:src="@drawable/complete"
+            android:layout_width="0dp"
+            android:layout_weight=".2"
+            android:layout_height="match_parent"
+            android:id="@+id/btnCompleteRequest" />
+    </LinearLayout>
     <Button
         android:text="Save"
         android:layout_width="match_parent"

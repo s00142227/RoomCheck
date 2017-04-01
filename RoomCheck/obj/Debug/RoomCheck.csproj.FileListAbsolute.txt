@@ -112,5 +112,7 @@ C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\Syste
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\menu\top_menus.xml
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\logout.png
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\complete.png
+C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\res\drawable\guestrequest.png
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\obj\Debug\RoomCheck.dll.mdb
 C:\Users\Katie\Desktop\PRJ400\RoomCheck\RoomCheck\bin\Debug\RoomCheck.dll.mdb

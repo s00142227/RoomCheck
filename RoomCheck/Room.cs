@@ -25,13 +25,14 @@ namespace RoomCheck
         public int CleanStatusID { get; set; }
         public int RoomTypeID { get; set; }
         public string Note { get; set; }
+        public string GuestRequest { get; set; }
         public int NoGuests { get; set; }
         public int UserID { get; set; }
         public User User { get; set; }
         public List<Event> Events { get; set; }
         public DateTime Date { get; set; }
 
-        public Room(int id,string roomNo, int occupiedStatus, int cleanStatus, int roomType, string note)
+        public Room(int id,string roomNo, int occupiedStatus, int cleanStatus, int roomType, string note, string request)
         {
             ID = id;
             RoomNo = roomNo;
@@ -39,6 +40,7 @@ namespace RoomCheck
             CleanStatusID = cleanStatus;
             RoomTypeID = roomType;
             Note = note;
+            GuestRequest = request;
             //todo: add list of events here
 
         }

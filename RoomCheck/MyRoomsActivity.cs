@@ -195,10 +195,29 @@ namespace RoomCheck
 
             //If there is a note on the room - show the note icon
             ImageView imgNote = view.FindViewById<ImageView>(Resource.Id.imgNote);
-            if (!string.IsNullOrEmpty(item.Note))
+            
+
+            //guest request overrides note - if there are both, the cleaner will have to 
+            //view details anyways and will see both
+            if (!string.IsNullOrEmpty(item.GuestRequest))
+            {
+                var resourceId = (int) typeof(Resource.Drawable).GetField("GuestRequest").GetValue(null);
+                imgNote.SetImageResource(resourceId);
                 imgNote.Visibility = ViewStates.Visible;
+            }
             else
+            {
                 imgNote.Visibility = ViewStates.Invisible;
+                if (!string.IsNullOrEmpty(item.Note))
+                {
+                    var resourceId = (int)typeof(Resource.Drawable).GetField("Info").GetValue(null);
+                    imgNote.SetImageResource(resourceId);
+                    imgNote.Visibility = ViewStates.Visible;
+                }
+                else
+                    imgNote.Visibility = ViewStates.Invisible;
+            }
+                
 
 
             //Check if there is currently an event for the room and show icon

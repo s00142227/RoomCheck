@@ -25,6 +25,8 @@ namespace RoomCheck
         public static JavaList<RoomCleanStatus> cleanstatuses;
         public static int roomID;
         private SQLiteConnection db;
+        private Room room;
+        private EditText txtGuestRequest;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -39,13 +41,14 @@ namespace RoomCheck
 
             roomID = Intent.GetIntExtra("RoomID", 0);
 
-            Room room = dbr.GetRoomById(roomID);
+            room = dbr.GetRoomById(roomID);
 
             //Get all fields on screen
             TextView txtRoomNo = FindViewById<TextView>(Resource.Id.txtRoomNo);
             TextView txtRoomType = FindViewById<TextView>(Resource.Id.txtRoomType);
             TextView txtRoomOccStatus = FindViewById<TextView>(Resource.Id.txtRoomOccupiedStatus);
             EditText txtNote = FindViewById<EditText>(Resource.Id.txtNote);
+            txtGuestRequest = FindViewById<EditText>(Resource.Id.txtGuestRequest);
             ImageView imgRoomType = FindViewById<ImageView>(Resource.Id.imgRoomType);
             ImageView imgRoomOccStatus = FindViewById<ImageView>(Resource.Id.imgRoomOccupiedStatus);
             TextView txtRoomClean = FindViewById<TextView>(Resource.Id.txtCleanStatus);
@@ -71,6 +74,7 @@ namespace RoomCheck
             txtRoomOccStatus.Text = roomOccStatus.Description;
             txtRoomNo.Text = "Room " + room.RoomNo;
             txtNote.Text = room.Note;
+            txtGuestRequest.Text = room.GuestRequest;
             txtRoomClean.Text = roomCleanStatus.Description;
 
 
@@ -96,7 +100,10 @@ namespace RoomCheck
 
             Button btnSave = FindViewById<Button>(Resource.Id.btnSave);
             btnSave.Click += BtnSaveOnClick;
-            
+
+            ImageButton btnCompleteRequest = FindViewById<ImageButton>(Resource.Id.btnCompleteRequest);
+            btnCompleteRequest.Click += BtnCompleteRequestOnClick;
+
             //TODO: set room clean status spinner to have the rooms status selected rather than just the first value
             //sprCleanStat.SelectedItem = sprCleanStat
             RoomCleanStatus rc = dbr.GetCleanStatusById(room.CleanStatusID);
@@ -132,6 +139,21 @@ namespace RoomCheck
             
 
 
+        }
+
+        private void BtnCompleteRequestOnClick(object sender, EventArgs eventArgs)
+        {
+            if (txtGuestRequest.Text != "" && txtGuestRequest.Text != "")
+            {
+                dbr.CompleteGuestRequest(room.ID);
+                txtGuestRequest.Text = "";
+                Toast.MakeText(this, "Guest request completed!", ToastLength.Short).Show();
+                //TODO: find out how to send notification to the user with the app on here
+            }
+            else
+            {
+                Toast.MakeText(this, "No request to complete", ToastLength.Short).Show();
+            }
         }
 
         //tried to use this method when setting the selection for the spinner but was havign problems
@@ -208,8 +230,9 @@ namespace RoomCheck
             int id = Intent.GetIntExtra("RoomID", 0);
             TextView txtCleanStat = FindViewById<TextView>(Resource.Id.txtCleanStatus);
             EditText txtNote = FindViewById<EditText>(Resource.Id.txtNote);
+            EditText txtGuestRequest = FindViewById<EditText>(Resource.Id.txtGuestRequest);
 
-            dbr.UpdateRoom(id, txtCleanStat.Text, txtNote.Text);
+            dbr.UpdateRoom(id, txtCleanStat.Text, txtNote.Text, txtGuestRequest.Text);
 
             //Toast.MakeText(this, "Room Updated", ToastLength.Short).Show();
             //might need more feedback for user here i.e. a popup message when they go back to previous screen

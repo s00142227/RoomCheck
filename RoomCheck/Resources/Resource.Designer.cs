@@ -1522,67 +1522,73 @@ namespace RoomCheck
 			public const int CleaningInProgress = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int Conference = 2130837589;
+			public const int Complete = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int ConferenceSmall = 2130837590;
+			public const int Conference = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int Departure = 2130837591;
+			public const int ConferenceSmall = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int edit_text_style = 2130837592;
+			public const int Departure = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int Empty = 2130837593;
+			public const int edit_text_style = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int Icon = 2130837594;
+			public const int Empty = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int Info = 2130837595;
+			public const int GuestRequest = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int Logout = 2130837596;
-			
-			// aapt resource value: 0x7f020069
-			public const int notification_template_icon_bg = 2130837609;
+			public const int Icon = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int Occupied = 2130837597;
+			public const int Info = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int ProgressBarStyle = 2130837598;
+			public const int Logout = 2130837598;
+			
+			// aapt resource value: 0x7f02006b
+			public const int notification_template_icon_bg = 2130837611;
 			
 			// aapt resource value: 0x7f02005f
-			public const int Sleep = 2130837599;
+			public const int Occupied = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int splash = 2130837600;
+			public const int ProgressBarStyle = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int Stay = 2130837601;
+			public const int Sleep = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int Tour = 2130837602;
+			public const int splash = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int TourSmall = 2130837603;
+			public const int Stay = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int Uncleaned = 2130837604;
+			public const int Tour = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int Unknown = 2130837605;
+			public const int TourSmall = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int Unoccupied = 2130837606;
+			public const int Uncleaned = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int Wedding = 2130837607;
+			public const int Unknown = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int WeddingSmall = 2130837608;
+			public const int Unoccupied = 2130837608;
+			
+			// aapt resource value: 0x7f020069
+			public const int Wedding = 2130837609;
+			
+			// aapt resource value: 0x7f02006a
+			public const int WeddingSmall = 2130837610;
 			
 			static Drawable()
 			{
@@ -1654,11 +1660,14 @@ namespace RoomCheck
 			// aapt resource value: 0x7f0b0019
 			public const int beginning = 2131427353;
 			
+			// aapt resource value: 0x7f0b0081
+			public const int btnCompleteRequest = 2131427457;
+			
 			// aapt resource value: 0x7f0b0057
 			public const int btnDialogEmail = 2131427415;
 			
-			// aapt resource value: 0x7f0b0080
-			public const int btnSave = 2131427456;
+			// aapt resource value: 0x7f0b0082
+			public const int btnSave = 2131427458;
 			
 			// aapt resource value: 0x7f0b0052
 			public const int btnSignIn = 2131427410;
@@ -1783,8 +1792,8 @@ namespace RoomCheck
 			// aapt resource value: 0x7f0b0068
 			public const int media_actions = 2131427432;
 			
-			// aapt resource value: 0x7f0b0081
-			public const int menu_logout = 2131427457;
+			// aapt resource value: 0x7f0b0083
+			public const int menu_logout = 2131427459;
 			
 			// aapt resource value: 0x7f0b001b
 			public const int middle = 2131427355;
@@ -1947,6 +1956,9 @@ namespace RoomCheck
 			
 			// aapt resource value: 0x7f0b0054
 			public const int txtFirstName = 2131427412;
+			
+			// aapt resource value: 0x7f0b0080
+			public const int txtGuestRequest = 2131427456;
 			
 			// aapt resource value: 0x7f0b0053
 			public const int txtHotelId = 2131427411;

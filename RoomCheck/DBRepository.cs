@@ -50,7 +50,10 @@ namespace RoomCheck
                         var Note = "";
                         if (reader["Note"] is string)
                             Note = (string) reader["Note"];
-                        rooms.Add(new Room(ID, RoomNo, roomOcc, roomClean, roomType, Note));
+                        var Request = "";
+                        if (reader["GuestRequest"] is string)
+                            Request = (string)reader["GuestRequest"];
+                        rooms.Add(new Room(ID, RoomNo, roomOcc, roomClean, roomType, Note, Request));
                     }
 
                     
@@ -94,8 +97,11 @@ namespace RoomCheck
                                 var note = "";
                                 if (reader["Note"] is string)
                                     note = (string) reader["Note"];
+                                var request = "";
+                                if (reader["GuestRequest"] is string)
+                                    request = (string)reader["GuestRequest"];
                                 room = new Room((int)reader["ID"], (string)reader["RoomNo"],
-                                    (int)reader["RoomOccupiedStatusID"], (int)reader["RoomCleanStatusID"], (int)reader["RoomTypeID"], note);
+                                    (int)reader["RoomOccupiedStatusID"], (int)reader["RoomCleanStatusID"], (int)reader["RoomTypeID"], note, request);
                             }
                         }
                     }
@@ -278,7 +284,7 @@ namespace RoomCheck
             return roomType;
         }
 
-        public void UpdateRoom(int id, string cleanStat, string note)
+        public void UpdateRoom(int id, string cleanStat, string note, string request)
         {
             //MySqlConnection con =
             //       new MySqlConnection(
@@ -291,11 +297,43 @@ namespace RoomCheck
                 {
                     con.Open();
 
-                    using (MySqlCommand cmd = new MySqlCommand("UPDATE RoomTbl SET RoomCleanStatusID = (SELECT ID from RoomCleanStatusTbl WHERE Description LIKE @roomclean), Note = @note WHERE ID = @id;", con))
+                    using (MySqlCommand cmd = new MySqlCommand("UPDATE RoomTbl SET RoomCleanStatusID = (SELECT ID from RoomCleanStatusTbl WHERE Description LIKE @roomclean), Note = @note, GuestRequest = @request WHERE ID = @id;", con))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
                         cmd.Parameters.AddWithValue("@roomclean", cleanStat);
                         cmd.Parameters.AddWithValue("@note", note);
+                        cmd.Parameters.AddWithValue("@request", request);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+
+            }
+            catch (MySqlException ex)
+            {
+                //Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public void CompleteGuestRequest(int id)
+        {
+            
+            try
+            {
+
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand("UPDATE RoomTbl SET GuestRequest = @req WHERE ID = @id;", con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.Parameters.AddWithValue("@req", "");
                         cmd.ExecuteNonQuery();
                     }
                 }
