@@ -1660,14 +1660,14 @@ namespace RoomCheck
 			// aapt resource value: 0x7f0b0019
 			public const int beginning = 2131427353;
 			
-			// aapt resource value: 0x7f0b0081
-			public const int btnCompleteRequest = 2131427457;
+			// aapt resource value: 0x7f0b0082
+			public const int btnCompleteRequest = 2131427458;
 			
 			// aapt resource value: 0x7f0b0057
 			public const int btnDialogEmail = 2131427415;
 			
-			// aapt resource value: 0x7f0b0082
-			public const int btnSave = 2131427458;
+			// aapt resource value: 0x7f0b0083
+			public const int btnSave = 2131427459;
 			
 			// aapt resource value: 0x7f0b0052
 			public const int btnSignIn = 2131427410;
@@ -1744,8 +1744,8 @@ namespace RoomCheck
 			// aapt resource value: 0x7f0b0060
 			public const int imgEventNotification = 2131427424;
 			
-			// aapt resource value: 0x7f0b007b
-			public const int imgEventType = 2131427451;
+			// aapt resource value: 0x7f0b007c
+			public const int imgEventType = 2131427452;
 			
 			// aapt resource value: 0x7f0b0062
 			public const int imgNote = 2131427426;
@@ -1753,11 +1753,11 @@ namespace RoomCheck
 			// aapt resource value: 0x7f0b005f
 			public const int imgRoomIcon = 2131427423;
 			
-			// aapt resource value: 0x7f0b0076
-			public const int imgRoomOccupiedStatus = 2131427446;
+			// aapt resource value: 0x7f0b0077
+			public const int imgRoomOccupiedStatus = 2131427447;
 			
-			// aapt resource value: 0x7f0b0074
-			public const int imgRoomType = 2131427444;
+			// aapt resource value: 0x7f0b0075
+			public const int imgRoomType = 2131427445;
 			
 			// aapt resource value: 0x7f0b0070
 			public const int info = 2131427440;
@@ -1780,8 +1780,8 @@ namespace RoomCheck
 			// aapt resource value: 0x7f0b0028
 			public const int list_item = 2131427368;
 			
-			// aapt resource value: 0x7f0b007a
-			public const int llEventLayout = 2131427450;
+			// aapt resource value: 0x7f0b007b
+			public const int llEventLayout = 2131427451;
 			
 			// aapt resource value: 0x7f0b005d
 			public const int llMyRoomsListItem = 2131427421;
@@ -1792,8 +1792,8 @@ namespace RoomCheck
 			// aapt resource value: 0x7f0b0068
 			public const int media_actions = 2131427432;
 			
-			// aapt resource value: 0x7f0b0083
-			public const int menu_logout = 2131427459;
+			// aapt resource value: 0x7f0b0084
+			public const int menu_logout = 2131427460;
 			
 			// aapt resource value: 0x7f0b001b
 			public const int middle = 2131427355;
@@ -1839,6 +1839,9 @@ namespace RoomCheck
 			
 			// aapt resource value: 0x7f0b0033
 			public const int scrollView = 2131427379;
+			
+			// aapt resource value: 0x7f0b0073
+			public const int scrollView1 = 2131427443;
 			
 			// aapt resource value: 0x7f0b0045
 			public const int search_badge = 2131427397;
@@ -1891,8 +1894,8 @@ namespace RoomCheck
 			// aapt resource value: 0x7f0b0007
 			public const int split_action_bar = 2131427335;
 			
-			// aapt resource value: 0x7f0b0078
-			public const int sprRoomClean = 2131427448;
+			// aapt resource value: 0x7f0b0079
+			public const int sprRoomClean = 2131427449;
 			
 			// aapt resource value: 0x7f0b0016
 			public const int src_atop = 2131427350;
@@ -1921,8 +1924,8 @@ namespace RoomCheck
 			// aapt resource value: 0x7f0b0034
 			public const int textSpacerNoButtons = 2131427380;
 			
-			// aapt resource value: 0x7f0b007e
-			public const int textView3 = 2131427454;
+			// aapt resource value: 0x7f0b007f
+			public const int textView3 = 2131427455;
 			
 			// aapt resource value: 0x7f0b006b
 			public const int time = 2131427435;
@@ -1939,8 +1942,8 @@ namespace RoomCheck
 			// aapt resource value: 0x7f0b002e
 			public const int topPanel = 2131427374;
 			
-			// aapt resource value: 0x7f0b0079
-			public const int txtCleanStatus = 2131427449;
+			// aapt resource value: 0x7f0b007a
+			public const int txtCleanStatus = 2131427450;
 			
 			// aapt resource value: 0x7f0b0058
 			public const int txtCreateAccount = 2131427416;
@@ -1948,23 +1951,23 @@ namespace RoomCheck
 			// aapt resource value: 0x7f0b0055
 			public const int txtEmail = 2131427413;
 			
-			// aapt resource value: 0x7f0b007d
-			public const int txtEventTime = 2131427453;
+			// aapt resource value: 0x7f0b007e
+			public const int txtEventTime = 2131427454;
 			
-			// aapt resource value: 0x7f0b007c
-			public const int txtEventType = 2131427452;
+			// aapt resource value: 0x7f0b007d
+			public const int txtEventType = 2131427453;
 			
 			// aapt resource value: 0x7f0b0054
 			public const int txtFirstName = 2131427412;
 			
-			// aapt resource value: 0x7f0b0080
-			public const int txtGuestRequest = 2131427456;
+			// aapt resource value: 0x7f0b0081
+			public const int txtGuestRequest = 2131427457;
 			
 			// aapt resource value: 0x7f0b0053
 			public const int txtHotelId = 2131427411;
 			
-			// aapt resource value: 0x7f0b007f
-			public const int txtNote = 2131427455;
+			// aapt resource value: 0x7f0b0080
+			public const int txtNote = 2131427456;
 			
 			// aapt resource value: 0x7f0b0059
 			public const int txtOr = 2131427417;
@@ -1972,14 +1975,14 @@ namespace RoomCheck
 			// aapt resource value: 0x7f0b0056
 			public const int txtPassword = 2131427414;
 			
-			// aapt resource value: 0x7f0b0073
-			public const int txtRoomNo = 2131427443;
+			// aapt resource value: 0x7f0b0074
+			public const int txtRoomNo = 2131427444;
 			
-			// aapt resource value: 0x7f0b0077
-			public const int txtRoomOccupiedStatus = 2131427447;
+			// aapt resource value: 0x7f0b0078
+			public const int txtRoomOccupiedStatus = 2131427448;
 			
-			// aapt resource value: 0x7f0b0075
-			public const int txtRoomType = 2131427445;
+			// aapt resource value: 0x7f0b0076
+			public const int txtRoomType = 2131427446;
 			
 			// aapt resource value: 0x7f0b0050
 			public const int txtSignInEmail = 2131427408;
