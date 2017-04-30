@@ -11,6 +11,12 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using SQLite;
+using Android.Gms.Common;
+using Android.Nfc;
+using Firebase.Messaging;
+using Android.Util;
+using Firebase;
+using Firebase.Iid;
 
 namespace RoomCheck
 {
@@ -20,7 +26,7 @@ namespace RoomCheck
     {
         DBRepository dbr = new DBRepository();
         public List<User> users = new List<User>();
-
+        const string TAG = "MainActivity";
         private Button btnSignUp;
         private Button btnLogin;
         private ProgressBar prgBar;
@@ -28,9 +34,21 @@ namespace RoomCheck
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+            
+            if (Intent.Extras != null)
+            {
+                foreach (var key in Intent.Extras.KeySet())
+                {
+                    var value = Intent.Extras.GetString(key);
+                    Log.Debug(TAG, "Key: {0} Value: {1}", key, value);
+                }
+            }
+
+            
+            IsPlayServicesAvailable();
+
 
             //NEW CODE: ANDROID LOGIN/SIGN UP TUTORIAL 
             btnSignUp = FindViewById<Button>(Resource.Id.btnSignUp);
@@ -40,6 +58,10 @@ namespace RoomCheck
 
             btnLogin = FindViewById<Button>(Resource.Id.btnSignIn);
             btnLogin.Click += BtnLoginOnClick;
+
+            FirebaseApp.InitializeApp(this);
+            //Log.Debug(TAG, "InstanceID token: " + FirebaseInstanceId.Instance.Token);
+
 
         }
 
@@ -60,9 +82,28 @@ namespace RoomCheck
             LogIn(e.Email, e.Password);
         }
 
-        
 
-        
+        public bool IsPlayServicesAvailable()
+        {
+            int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+            if (resultCode != ConnectionResult.Success)
+            {
+                if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
+                    Toast.MakeText(this, GoogleApiAvailability.Instance.GetErrorString(resultCode), ToastLength.Long).Show();
+                else
+                {
+                    Toast.MakeText(this, "This device is not supported", ToastLength.Long).Show();
+                    Finish();
+                }
+                return false;
+            }
+            else
+            {
+                Toast.MakeText(this, "Google Play Services is available.", ToastLength.Long).Show();
+                return true;
+            }
+        }
+
 
         private void LogIn(string email, string password)
         {
@@ -73,9 +114,10 @@ namespace RoomCheck
 
                 User user = users.FirstOrDefault(u => u.Email == email);
                 SaveToSQLite(user);
-                
-                
+
+
                 //start new activity
+                FirebaseApp.InitializeApp(this);
                 StartActivity(typeof(MyRoomsActivity));
 
             }
@@ -154,7 +196,7 @@ namespace RoomCheck
         private void SignUpDialogOnOnSignUpComplete(object sender, OnSignUpEventArgs e)
         {
             prgBar.Visibility = ViewStates.Visible;
-            
+
             //here we can use e.HotelID etc fromt he dialog
             if (!dbr.CheckEmailExists(e.Email))
             {
@@ -176,7 +218,7 @@ namespace RoomCheck
             prgBar.Visibility = ViewStates.Invisible;
         }
 
-        
+
 
     }
 }

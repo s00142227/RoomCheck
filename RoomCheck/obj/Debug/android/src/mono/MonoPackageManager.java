@@ -99,7 +99,6 @@ class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		/* We need to ensure that "RoomCheck.dll" comes first in this list. */
 		"RoomCheck.dll",
-		"Java.Interop.dll",
 		"MySql.Data.CF.dll",
 		"PCLCrypto.dll",
 		"PInvoke.BCrypt.dll",
@@ -113,28 +112,23 @@ class MonoPackageManager_Resources {
 		"SQLitePCLRaw.lib.e_sqlite3.dll",
 		"SQLitePCLRaw.provider.e_sqlite3.dll",
 		"Validation.dll",
-		"Xamarin.Android.Support.Animated.Vector.Drawable.dll",
+		"Xamarin.GooglePlayServices.Basement.dll",
+		"Xamarin.GooglePlayServices.Tasks.dll",
+		"Xamarin.Firebase.Common.dll",
+		"Xamarin.Firebase.Iid.dll",
+		"Xamarin.Firebase.Messaging.dll",
+		"Xamarin.GooglePlayServices.Base.dll",
+		"Xamarin.Android.Support.Compat.dll",
+		"Xamarin.Android.Support.Core.UI.dll",
+		"Xamarin.Android.Support.Core.Utils.dll",
+		"Xamarin.Android.Support.Media.Compat.dll",
+		"Xamarin.Android.Support.Fragment.dll",
 		"Xamarin.Android.Support.v4.dll",
-		"Xamarin.Android.Support.v7.AppCompat.dll",
 		"Xamarin.Android.Support.Vector.Drawable.dll",
-		"System.Threading.dll",
-		"System.Runtime.dll",
-		"System.Collections.dll",
-		"System.Collections.Concurrent.dll",
-		"System.Diagnostics.Debug.dll",
-		"System.Reflection.dll",
-		"System.Linq.dll",
-		"System.Runtime.InteropServices.dll",
-		"System.Runtime.Extensions.dll",
-		"System.Reflection.Extensions.dll",
-		"System.ServiceModel.Internals.dll",
-		"System.Linq.Expressions.dll",
-		"System.Globalization.dll",
-		"System.Threading.Tasks.dll",
-		"System.Resources.ResourceManager.dll",
-		"System.Diagnostics.Tools.dll",
+		"Xamarin.Android.Support.Animated.Vector.Drawable.dll",
+		"Xamarin.Android.Support.v7.AppCompat.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};
-	public static final String ApiPackageName = "Mono.Android.Platform.ApiLevel_23";
+	public static final String ApiPackageName = "Mono.Android.Platform.ApiLevel_24";
 }
